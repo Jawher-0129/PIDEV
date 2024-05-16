@@ -1,0 +1,66 @@
+/* General settings for the TilePane container */
+.tile-pane {
+    -fx-background-color: #f9f9f9; /* Softer gray background for the container */
+    -fx-hgap: 15; /* Increase horizontal gap for better spacing */
+    -fx-vgap: 15; /* Increase vertical gap for better spacing */
+    -fx-padding: 20; /* Increased padding to provide more space around the tiles */
+}
+
+/* Enhanced styles for each card, including a more pronounced shadow */
+.card-pane {
+    -fx-background-color: #ffffff; /* Maintain a clean, white background */
+    -fx-padding: 20; /* Increase padding for a more spacious layout inside each card */
+    -fx-border-color: #dcdcdc; /* Softer border color for a less intrusive look */
+    -fx-border-width: 1; /* Subtle border width */
+    -fx-border-radius: 10; /* Smoother, larger rounded corners */
+    -fx-background-radius: 10; /* Consistent radius with border for a seamless look */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 10, 0.5, 0, 0); /* Stronger shadow for better depth */
+    -fx-alignment: center; /* Ensure all content is centered within each card */
+}
+
+/* Improved label styling with enhanced readability */
+.label {
+    -fx-text-fill: #2a2a2a; /* Slightly darker text for better contrast */
+   /* Maintain bold font weight */
+    -fx-font-size: 16px; /* Increase font size for better legibility */
+}
+
+.hyperlink {
+    -fx-font-size: 18px; /* Taille de police légèrement plus grande pour le lien */
+    -fx-text-fill: #0066cc; /* Couleur du texte du lien */
+    -fx-alignment: center; /* Centrer le texte horizontalement */
+}
+.Titre{
+    -fx-font-weight: bold; /* Rendre le titre en gras */
+    -fx-font-size: 24px; /* Taille de police plus grande pour le titre */
+    -fx-text-fill: #2a2a2a; /* Couleur du texte plus foncée */
+    -fx-alignment: center; /* Centrer le texte horizontalement */
+}
+
+/* More dynamic button styling with a more modern aesthetic */
+.button {
+    /* Gradient background from light sky blue to navy blue */
+    -fx-background-color: linear-gradient(to bottom, #87CEEB, #56b4e9);
+    -fx-text-fill: #ffffff; /* Maintain white text for contrast */
+    -fx-font-family: 'Arial'; /* Change to Arial for a clean and readable appearance */
+    -fx-font-size: 14px; /* Suitable font size for button text */
+    -fx-font-weight: bold; /* Bold text to make the button text stand out */
+    -fx-background-radius: 10; /* Rounded corners for a modern touch */
+    -fx-border-radius: 10; /* Ensure the border radius matches the background */
+    -fx-padding: 10 20; /* Appropriate padding for comfort and a better clickable area */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.3, 0, 2); /* Subtle shadow for a 3D effect */
+}
+
+.button:hover {
+    /* Slightly darker gradient for hover effect */
+    -fx-background-color: linear-gradient(to bottom, #6495ED, #000033);
+}
+
+
+
+/* Styling for image views to maintain consistency while improving aesthetics */
+.image-view {
+    -fx-fit-width: 100; /* Increased width for better visibility */
+    -fx-fit-height: 100; /* Increased height to match width */
+    -fx-preserve-ratio: true; /* Ensure the image's aspect ratio is maintained */
+}

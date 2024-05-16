@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="698.0" prefWidth="1626.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.sampleFront">
+    <children>
+        <BorderPane layoutY="7.0" prefHeight="623.0" prefWidth="1263.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <top>
+                <AnchorPane prefHeight="60.0" prefWidth="1263.0" BorderPane.alignment="CENTER">
+                    <children>
+                        <HBox layoutX="-1.0" prefHeight="67.0" prefWidth="1406.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="150.0">
+                            <children>
+                                <ImageView fitHeight="69.0" fitWidth="325.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/healthqwift.png" />
+                                    </image>
+                                </ImageView>
+                                <Separator orientation="VERTICAL" prefHeight="67.0" prefWidth="773.0" />
+                                <Button mnemonicParsing="false" onAction="#EditProfile" prefHeight="49.0" prefWidth="37.0" style="-fx-background-color: Whilte;" textFill="#032d4d">
+                                    <font>
+                                        <Font name="System Bold Italic" size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="37.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@images/edit.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                <Button mnemonicParsing="false" onAction="#logout" prefHeight="49.0" prefWidth="40.0" style="-fx-background-color: Whilte;" textFill="#032d4d">
+                                    <font>
+                                        <Font name="System Bold Italic" size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="33.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@images/logout.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Separator orientation="VERTICAL" prefHeight="200.0" />
+                                <!-- Affichage du nom complet de l'utilisateur -->
+                                <Label fx:id="userNameLabel" prefHeight="50.0" prefWidth="362.0" text="Nom Complet de l'Utilisateur" textFill="#032d4d">
+                                    <font>
+                                        <Font name="System Bold Italic" size="18.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="338.0">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#EditProfile" prefHeight="49.0" prefWidth="37.0" style="-fx-background-color: Whilte;" textFill="#032d4d">
+                                    <font>
+                                        <Font name="System Bold Italic" size="18.0" />
+                                    </font>
+                                </Button>
+                                <Button mnemonicParsing="false" onAction="#logout" prefHeight="49.0" prefWidth="40.0" style="-fx-background-color: Whilte;" textFill="#032d4d">
+                                    <font>
+                                        <Font name="System Bold Italic" size="18.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+
+                        <Label fx:id="MenuBack" layoutX="51.0" layoutY="23.0" text="Menu" textFill="#032d4d">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/burger.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold Italic" size="12.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="Menu" layoutX="51.0" layoutY="23.0" text="Menu" textFill="#032d4d">
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/burger.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font name="System Bold Italic" size="12.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </top>
+            <left>
+                <AnchorPane fx:id="slider" prefHeight="362.0" prefWidth="176.0" style="-fx-background-color: #82CEF9;" BorderPane.alignment="CENTER">
+                    <children>
+                        <VBox layoutX="27.0" layoutY="25.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="53.0">
+                            <children>
+                                <Region prefHeight="24.0" prefWidth="176.0" />
+                                <Button fx:id="demande" mnemonicParsing="false" onAction="#afficherDemande" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: white;" text="Demandes" />
+                                <Region prefHeight="24.0" prefWidth="176.0" />
+                                <Button fx:id="materiel" mnemonicParsing="false" onAction="#afficherCategorie" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: white;" text="Materiels" />
+                                <Region prefHeight="24.0" prefWidth="176.0" />
+                                <Button fx:id="Personnels" mnemonicParsing="false" onAction="#afficherPersonnelsFront" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: white;" text="Personnels" />
+                                <Region prefHeight="24.0" prefWidth="176.0" />
+                                <Button fx:id="actualite" mnemonicParsing="false" onAction="#afficherActualite" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: white;" text="Actualite" />
+                                <Region prefHeight="24.0" prefWidth="176.0" />
+                                <Button fx:id="evennement" mnemonicParsing="false" onAction="#afficherevent" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: white;" text="Evennements" />
+                                <Region prefHeight="24.0" prefWidth="176.0" />
+                                <Button mnemonicParsing="false" onAction="#afficherCampagne" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: white;" text="Campagne" />
+                                <Region prefHeight="24.0" prefWidth="176.0" />
+                                <Button mnemonicParsing="false" onAction="#afficherDon" prefHeight="37.0" prefWidth="175.0" style="-fx-background-color: white;" text="Don" />
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </left>
+            <center>
+                <AnchorPane fx:id="contenu" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f2fafc;" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+    </children>
+</AnchorPane>

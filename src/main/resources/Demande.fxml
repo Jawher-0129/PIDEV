@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane fx:id="pricipal" prefHeight="673.0" prefWidth="893.0" style="-fx-background-color: #f2fafc;" stylesheets="@demandeBack.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DemandeController">
+   <children>
+      <VBox layoutX="41.0" layoutY="72.0" prefHeight="241.0" prefWidth="217.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="70.0" />
+      <TableView fx:id="demandeTable" layoutX="23.0" layoutY="59.0" prefHeight="323.0" prefWidth="879.0" stylesheets="@StyleMaterieles.css">
+        <columns>
+          <TableColumn fx:id="id_demande" prefWidth="84.0" text="id_demande" />
+          <TableColumn fx:id="titreD" prefWidth="34.0" text="titre" />
+            <TableColumn fx:id="descriptionD" minWidth="0.0" prefWidth="92.0" text="description" />
+            <TableColumn fx:id="date" minWidth="0.0" prefWidth="65.0" text="date" />
+            <TableColumn fx:id="statusD" prefWidth="101.0" text="status" />
+            <TableColumn fx:id="donD" prefWidth="61.0" text="don" />
+            <TableColumn fx:id="ActionC" prefWidth="142.0" text="Action" />
+            <TableColumn fx:id="RendezVous" minWidth="0.0" prefWidth="131.0" text="rendezVous" />
+            <TableColumn fx:id="directeurCompagne" prefWidth="164.0" text="DirecteurdeCompagne" />
+        </columns>
+      </TableView>
+      <HBox alignment="TOP_RIGHT" layoutX="349.0" layoutY="14.0" prefHeight="42.0" prefWidth="227.0">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/icons8-search-48.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="search" prefHeight="32.0" prefWidth="140.0" promptText="search" styleClass="search-field" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

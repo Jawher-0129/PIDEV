@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" stylesheets="@StyleSheets/form.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.CampagneFormController">
+    <content>
+        <VBox alignment="CENTER" prefHeight="600.0" prefWidth="558.0" spacing="10" styleClass="campagne-form">
+            <children>
+                <Label fx:id="labelTitre" styleClass="form-label" text="Initialisation..." />
+
+                <Label styleClass="form-label" text="Titre de la Campagne" />
+                <TextField fx:id="titreField" promptText="Entrez le titre de la campagne" styleClass="form-textfield" />
+                <Label fx:id="titreError" text="" styleClass="error-message" />
+
+                <Label styleClass="form-label" text="Description:" />
+                <TextArea fx:id="descriptionArea" promptText="Entrez la description" styleClass="form-textarea" />
+                <Label fx:id="descriptionError" text="" styleClass="error-message" />
+
+                <Label styleClass="form-label" text="Date de Début" />
+                <DatePicker fx:id="debutDatePicker" promptText="Sélectionnez la date de début" styleClass="form-datepicker" />
+                <Label fx:id="debutError" text="" styleClass="error-message" />
+
+                <Label styleClass="form-label" text="Date de Fin" />
+                <DatePicker fx:id="finDatePicker" promptText="Sélectionnez la date de fin" styleClass="form-datepicker" />
+                <Label fx:id="finError" text="" styleClass="error-message" />
+
+                <Label styleClass="form-label" text="Image:" />
+                <HBox alignment="CENTER" spacing="10">
+                    <TextField fx:id="imageField" prefWidth="260.0" promptText="Chemin de l'image" styleClass="form-textfield" />
+                    <Button onAction="#handleBrowseImage" text="Parcourir..." styleClass="form-button" />
+                </HBox>
+                <Label fx:id="imageError" text="" styleClass="error-message" />
+
+                <ImageView fx:id="imageView" fitHeight="50" fitWidth="150" preserveRatio="true" />
+
+                <Button fx:id="boutonEnregistrer" onAction="#handleSave" text="Enregistrer la Campagne" styleClass="form-button" />
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DashboardController">
+    <children>
+        <AnchorPane layoutX="25.0" layoutY="14.0" prefHeight="168.0" prefWidth="1061.0" stylesheets="@StyleMaterieles.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <AnchorPane layoutX="32.0" layoutY="14.0" prefHeight="132.0" prefWidth="414.0" styleClass="nav-form" stylesheets="@StyleMaterieles.css">
+                    <children>
+                        <Label layoutX="26.0" layoutY="105.0" text="Evénements disponibles" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="availableEventsLabel" alignment="CENTER" layoutX="287.0" layoutY="31.0" prefHeight="39.0" prefWidth="60.0" text="0" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="470.0" layoutY="14.0" prefHeight="132.0" prefWidth="567.0" styleClass="nav-form" stylesheets="@StyleMaterieles.css">
+                    <children>
+                        <Label layoutX="30.0" layoutY="104.0" text="Tous les événements " textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="15.0" />
+                            </font>
+                        </Label>
+                        <Label fx:id="totalEventsLabel" alignment="CENTER" layoutX="455.0" layoutY="27.0" prefHeight="39.0" prefWidth="60.0" text="0" textFill="WHITE">
+                            <font>
+                                <Font name="Tahoma Bold" size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="23.0" layoutY="214.0" prefHeight="400.0" prefWidth="1067.0" stylesheets="@StyleMaterieles.css">
+            <styleClass>
+                <String fx:value="white-bg" />
+                <String fx:value="shadow" />
+            </styleClass>
+            <children>
+                <AnchorPane layoutX="15.0" layoutY="25.0" prefHeight="355.0" prefWidth="522.0" stylesheets="@StyleMaterieles.css">
+                    <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                    </styleClass>
+                    <children>
+                        <BarChart fx:id="eventsByDateChart" layoutX="42.0" layoutY="14.0" prefHeight="318.0" prefWidth="466.0" title="Evenement par date">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" />
+                            </yAxis>
+                        </BarChart>
+                    </children>
+                </AnchorPane>
+                <AnchorPane layoutX="557.0" layoutY="25.0" prefHeight="355.0" prefWidth="488.0" stylesheets="@StyleMaterieles.css">
+                    <styleClass>
+                        <String fx:value="white-bg" />
+                        <String fx:value="shadow" />
+                    </styleClass>
+                    <children>
+                        <LineChart fx:id="eventsByDurationChart" layoutX="17.0" layoutY="14.0" prefHeight="318.0" prefWidth="466.0" title="Evenement par duree">
+                            <xAxis>
+                                <CategoryAxis side="BOTTOM" />
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis side="LEFT" />
+                            </yAxis>
+                        </LineChart>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
+

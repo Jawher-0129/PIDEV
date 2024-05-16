@@ -1,0 +1,29 @@
+.evenement-card {
+    -fx-border-color: lightgray;
+    -fx-border-radius: 5;
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 10px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 200px;
+    -fx-padding: 10px;
+    -fx-spacing: 10px; /* Increased spacing for better separation between elements */
+    -fx-alignment: center; /* Center alignment to line up elements neatly */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0.5, 0, 0);
+}
+
+.evenement-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.evenement-date {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+
+}
+
+.evenement-lieu {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+}

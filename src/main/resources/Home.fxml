@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="673.0" prefWidth="1182.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Home">
+   <children>
+      <ImageView fitHeight="277.0" fitWidth="522.0" layoutX="42.0" layoutY="366.0">
+         <image>
+            <Image url="@../../../../../../Desktop/wetransfer_3a32-healthswift-javafx_2024-05-04_2208/3A32-HealthSwift-JAVAFX/src/main/images/Capture%20d'écran%202024-05-06%20190001.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="277.0" fitWidth="514.0" layoutX="623.0" layoutY="371.0">
+         <image>
+            <Image url="@../../../../../../Desktop/PidevUserFirasJavaFx/3A32-HealthSwift-JAVAFX/src/main/images/Capture%20d'écran%202024-05-06%20185727.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="271.0" fitWidth="1182.0" layoutY="66.0">
+         <image>
+            <Image url="file:/C:\Users\jawhe\OneDrive\Bureau\wetransfer_3a32-healthswift-javafx_2024-05-04_2208\wetransfer_3a32-healthswift-javafx_2024-05-04_2208\3A32-HealthSwift-JAVAFX\src\main\images\Capture%20d'écran%202024-03-29%20175119.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="64.0" fitWidth="327.0">
+         <image>
+            <Image url="@../../../../../../Desktop/PidevUserFirasJavaFx/3A32-HealthSwift-JAVAFX/src/main/images/Capture%20d'écran%202024-03-29%20175218.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="288.0" fitWidth="1182.0" layoutX="7.0" layoutY="62.0">
+         <image>
+            <Image url="@../images/440313031_1362782868445451_1184724517255576894_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="301.0" fitWidth="572.0" layoutX="582.0" layoutY="367.0">
+         <image>
+            <Image url="@../images/440345881_462946189410705_4506264561926029993_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="60.0" fitWidth="244.0">
+         <image>
+            <Image url="@../images/440313047_449414777446928_6309338073132594243_n.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="315.0" fitWidth="604.0" layoutX="-7.0" layoutY="353.0">
+         <image>
+            <Image url="@../images/440535525_430673243012196_7496755996625408513_n.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

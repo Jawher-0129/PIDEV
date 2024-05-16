@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.EmailController"
+            prefHeight="400.0" prefWidth="600.0">
+
+
+    <children>
+        <VBox layoutX="444.0" layoutY="33.0" spacing="10.0">
+            <Label text="Adresse e-mail du destinataire" />
+            <TextField fx:id="recipientField" />
+
+            <Label text="Objet de l'e-mail" />
+            <TextField fx:id="subjectField" />
+
+            <Label text="Contenu de l'e-mail" />
+            <TextArea fx:id="contentArea" prefHeight="200.0" prefWidth="300.0" />
+
+            <HBox prefHeight="30.0" prefWidth="500.0" spacing="10.0">
+                <Button onAction="#sendEmail" style="-fx-background-color: #932828;" text="Envoyer" />
+                <Button onAction="#sendEmail" style="-fx-background-color: #932828;" text="Annuler" />
+            </HBox>
+        </VBox>
+        <AnchorPane layoutX="-13.0" prefHeight="650.0" prefWidth="311.0" style="-fx-background-color: white;">
+            <children>
+
+                <Label layoutX="50.0" layoutY="421.0" prefHeight="18.0" prefWidth="215.0" text="GESTION Hospitaliére">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

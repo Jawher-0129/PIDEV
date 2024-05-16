@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="20" style="-fx-padding: 20;" stylesheets="@StyleSheets/form.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.DonFormController">
+   <children>
+      <Label fx:id="labelTitre" styleClass="form-label" text="Initialisation..." />
+
+      <Label styleClass="form-label" text="Type de Don:" />
+      <TextField fx:id="champType" promptText="Entrez le type de don" styleClass="form-textfield" />
+      <Label fx:id="typeError" styleClass="error-message" />
+
+      <Label styleClass="form-label" text="Montant du Don:" />
+      <TextField fx:id="champMontant" promptText="Entrez le montant (optionnel)" styleClass="form-textfield" />
+      <Label fx:id="montantError" styleClass="error-message" />
+
+      <Label styleClass="form-label" text="Date de Remise:" />
+      <DatePicker fx:id="selecteurDateRemise" promptText="Sélectionnez la date de remise" styleClass="form-datepicker" />
+      <Label fx:id="dateRemiseError" styleClass="error-message" />
+
+      <Label styleClass="form-label" text="Campagne:" />
+      <ComboBox fx:id="comboCampagne" promptText="Sélectionnez la campagne" styleClass="form-textarea"/>
+      <Label fx:id="campagneError" styleClass="error-message" />
+
+      <Button fx:id="boutonEnregistrer" styleClass="form-button" text="Enregistrer le Don" />
+   </children>
+</VBox>

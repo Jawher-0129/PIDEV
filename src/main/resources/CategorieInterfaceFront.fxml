@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="762.0" prefWidth="1773.0" style="-fx-background-color: #f2fafc;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CategorieInterfaceFrontController">
+    <children>
+        <Label style="-fx-font-size: 24px; -fx-padding: 10px;" text="Liste des Catégories" />
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" style="-fx-background-color: #f2fafc;">
+            <content>
+                <TilePane fx:id="categoryContainer" hgap="10" prefColumns="4" prefHeight="658.0" prefWidth="1162.0" style="-fx-background-color: #f2fafc;" vgap="10">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                </TilePane>
+            </content>
+        </ScrollPane>
+    </children>
+</VBox>

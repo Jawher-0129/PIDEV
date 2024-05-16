@@ -1,0 +1,49 @@
+.campaign-card {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px;
+    -fx-spacing: 10px; /* Increased spacing for better separation between elements */
+    -fx-alignment: center; /* Center alignment to line up elements neatly */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0.5, 0, 0);
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-min-width: 280px;
+    -fx-max-width: 280px;
+    -fx-pref-height: 350px; /* Increased height to accommodate title placement below image */
+}
+
+.campaign-image {
+    -fx-preserve-ratio: true;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0.2, 0, 0);
+    -fx-fit-height: 140px;
+    -fx-fit-width: 200px;
+    -fx-min-width: 200px; /* Ensure image width matches the title width below */
+}
+
+.campaign-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-padding: 12px 20px; /* Increased side padding for better focus on text */
+    -fx-alignment: center;
+    -fx-wrap-text: true;
+    -fx-min-width: 200px; /* Ensures the title is aligned with image width */
+    -fx-background-radius: 5px;
+}
+
+.campaign-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+}
+
+.campaign-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #999999;
+}
+
+.campaign-details-button {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+}

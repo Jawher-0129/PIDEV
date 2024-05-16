@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="690.0" prefWidth="1002.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DonController">
+    <content>
+        <AnchorPane prefHeight="700.0" prefWidth="1000.0">
+            <children>
+                <VBox alignment="CENTER" spacing="10" styleClass="main-vbox">
+                    <children>
+                        <Label style="-fx-font-size: 20px; -fx-font-weight: bold;" text="Liste des Dons" textFill="#3f4a75">
+                            <VBox.margin>
+                                <Insets bottom="10.0" top="10.0" />
+                            </VBox.margin>
+                        </Label>
+                        <TextField fx:id="searchField" layoutX="10" layoutY="10" onKeyReleased="#filterTable" prefHeight="25.0" prefWidth="100.0" promptText="Search..." styleClass="search" stylesheets="@StyleSheets/Style.css" />
+
+                        <TableView fx:id="tableView" prefHeight="317.0" prefWidth="959.0" stylesheets="@StyleSheets/Style.css" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="colId" prefWidth="75.0" text="ID" />
+                                <TableColumn fx:id="colType" prefWidth="250.0" text="Type" />
+                                <TableColumn fx:id="colMontant" prefWidth="231.0" text="Montant" />
+                                <TableColumn fx:id="colDateRemise" prefWidth="179.0" text="Date Remise" />
+                                <TableColumn fx:id="colCampagneId" prefWidth="238.0" text="Campagne ID" />
+                            </columns>
+                        </TableView>
+                        <AnchorPane prefHeight="235.0" prefWidth="975.0" styleClass="form-section" stylesheets="@StyleSheets/form.css">
+                            <children>
+                                <Label layoutX="43.0" layoutY="20.0" styleClass="form-label" text="Type" />
+                                <TextField fx:id="typeField" layoutX="127.0" layoutY="14.0" prefHeight="28.0" prefWidth="220.0" styleClass="form-textfield" />
+                                <Label layoutX="24.0" layoutY="66.0" styleClass="form-label" text="Montant" />
+                                <TextField fx:id="montantField" layoutX="127.0" layoutY="59.0" prefHeight="28.0" prefWidth="220.0" styleClass="form-textfield" />
+                                <Label layoutX="6.0" layoutY="115.0" styleClass="form-label" text="Date Remise" />
+                                <DatePicker fx:id="dateRemiseField" layoutX="127.0" layoutY="103.0" prefHeight="29.0" prefWidth="220.0" styleClass="form-datepicker" />
+                                <Label layoutX="13.0" layoutY="179.0" styleClass="form-label" text="Campagne" />
+                                <Button fx:id="insertButton" layoutX="540.0" layoutY="69.0" onAction="#insert" styleClass="form-button" text="Insert" />
+                                <Button fx:id="updateButton" layoutX="431.0" layoutY="69.0" onAction="#update" styleClass="form-button" text="Update" />
+                                <Button fx:id="clearButton" layoutX="636.0" layoutY="69.0" onAction="#clear" styleClass="form-button" text="Clear" />
+                                <Button fx:id="deleteButton" layoutX="539.0" layoutY="135.0" onAction="#delete" styleClass="form-button" text="Delete" />
+                                <ComboBox fx:id="campagneComboBox" layoutX="127.0" layoutY="177.0" prefWidth="220.0" />
+                              <Button fx:id="downloadButton" layoutX="848.0" layoutY="14.0" onAction="#downloadPDF" text="Download PDF" textFill="#5686c4">
+                           <stylesheets>
+                              <URL value="@StyleSheets/Style.css" />
+                              <URL value="@StyleSheets/form.css" />
+                           </stylesheets>
+                           <font>
+                              <Font name="Segoe UI Historic" size="12.0" />
+                           </font>
+                           <styleClass>
+                              <String fx:value="filter" />
+                              <String fx:value="form-datepicker" />
+                           </styleClass>
+                        </Button>
+
+                            </children>
+                        </AnchorPane>
+                    </children>
+                    <padding>
+                        <Insets left="10.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

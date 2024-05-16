@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="723.0" prefWidth="1399.0" style="-fx-background-color: #f2fafc;" styleClass="style-form" stylesheets="@form.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DemandeFrontController">
+   <children>
+      <Label fx:id="idDemande" layoutX="423.0" layoutY="77.0" text="Label" />
+      <VBox fx:id="vboxx" alignment="TOP_RIGHT" layoutX="646.0" layoutY="28.0" prefHeight="491.0" prefWidth="427.0" spacing="10" style="-fx-background-color: white;" styleClass="vbox-container">
+         <children>
+            <Label text="Titre de demande:" />
+            <TextField fx:id="titre" prefHeight="25.0" prefWidth="164.0" />
+            <Label text="Description de demande" />
+            <TextArea fx:id="description" prefHeight="112.0" prefWidth="164.0" />
+            <Label text="Statut de Demande" />
+            <TextField fx:id="statut" />
+            <Label text="Don de demande" />
+            <ChoiceBox fx:id="don" prefWidth="150.0" />
+            <Button fx:id="modifier" mnemonicParsing="false" onAction="#handleUpdateDemande" prefWidth="85.0" text="Modifier" />
+            <Button fx:id="CancelModifier" mnemonicParsing="false" onAction="#handleCancelM" prefHeight="25.0" prefWidth="85.0" text="Annuller" />
+         </children>
+      </VBox>
+      <ImageView fitHeight="418.0" fitWidth="639.0" layoutX="7.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/8b6b0410-cce1-4bec-aa85-7820473d6e58-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,75 @@
+.campagne-form {
+    -fx-padding: 20px;
+    -fx-background-color: #f4f4f9;
+    -fx-border-color: #d3d3e2;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.1), 100, 0, 0, 5);
+}
+
+.form-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #505050;
+    -fx-font-family: 'Arial Rounded MT Bold', sans-serif;
+}
+
+.form-textfield, .form-textarea, .form-datepicker {
+    -fx-font-size: 14px;
+    -fx-border-color: #bdbdbd;
+    -fx-border-width: 1px;
+    -fx-padding: 8px;
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 5px; /* Rounded borders */
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.1), 20, 0, 0, 2);
+    -fx-font-family: 'Arial', sans-serif;
+}
+
+.form-textfield:focus, .form-textarea:focus, .form-datepicker:focused {
+    -fx-border-color: #56b4e9;
+    -fx-effect: dropshadow(gaussian, rgba(86, 180, 233, 0.5), 10, 0, 0, 0);
+    -fx-border-radius: 5px; /* Ensure consistency in focused state */
+}
+
+.form-button {
+    -fx-background-color: #56b4e9;
+    -fx-text-fill: #ffffff;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-font-family: 'Arial Rounded MT Bold', sans-serif;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 20, 0, 0, 1);
+}
+
+.form-button:hover {
+    -fx-background-color: #3182bd;
+}
+
+.form-datepicker {
+    -fx-background-color: #ffffff;
+    -fx-border-radius: 5px; /* Rounded borders for datepicker itself */
+}
+
+.form-datepicker .arrow-button {
+    -fx-background-color: #cccccc;
+    -fx-effect: dropshadow(one-pass-box, rgba(0, 0, 0, 0.1), 20, 0, 0, 2);
+}
+
+.form-datepicker .arrow-button:hover {
+    -fx-background-color: #bbbbbb;
+}
+
+.error-message {
+    -fx-font-size: 12px;
+    -fx-text-fill: #d9534f; /* Red color for errors */
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-padding: 5px;
+}
+
+/* Enhanced visibility when an error is displayed */
+.form-textfield.error, .form-textarea.error, .form-datepicker.error {
+    -fx-border-color: #d9534f; /* Red border on error */
+    -fx-effect: dropshadow(one-pass-box, rgba(217, 83, 79, 0.5), 5, 0, 0, 0); /* Subtle red shadow */
+}
+

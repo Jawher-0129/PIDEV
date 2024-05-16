@@ -1,0 +1,34 @@
+/* your-stylesheet.css */
+
+/* GridPane */
+#gridPane {
+    background-color: #f0f0f0;
+}
+
+/* BarChart */
+.chart-bar {
+    -fx-bar-fill: #336699;
+}
+
+/* CategoryAxis */
+.chart-category-axis {
+    -fx-label-fill: #333333;
+}
+
+/* NumberAxis */
+.chart-number-axis {
+    -fx-label-fill: #333333;
+}
+
+/* Apply padding to all elements */
+.chart, .axis {
+    -fx-padding: 10px;
+}
+
+.title-label {
+    -fx-font-size: 35px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-alignment: center;
+    -fx-padding: 10px;
+}

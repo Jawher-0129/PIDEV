@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="673.0" prefWidth="1182.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminPage">
+    <children>
+
+        <!-- Placeholder Pane for Potential Content on the Right Side -->
+        <Pane layoutX="488.0" layoutY="100.0" AnchorPane.bottomAnchor="73.0" AnchorPane.topAnchor="100.0" />
+
+        <!-- TableView to Display Users -->
+        <!-- TableView to Display Users -->
+        <TableView id="StyleMaterieles.css" fx:id="UserTable" layoutX="77.0" layoutY="100.0" prefHeight="355.0" prefWidth="851.0" stylesheets="@StyleMaterieles.css">
+            <columns>
+                <!-- Add the Delete Button Column -->
+                <TableColumn fx:id="Nom" prefWidth="114.40003967285156" text="Nom" />
+                <TableColumn fx:id="Prenom" prefWidth="75.20001220703125" text="Prenom" />
+                <TableColumn fx:id="Email" prefWidth="220.79998779296875" text="Email" />
+                <TableColumn fx:id="Adresse" prefWidth="104.0" text="Adresse" />
+                <TableColumn fx:id="Telephone" prefWidth="128.79998779296875" text="Telephone" />
+                <TableColumn fx:id="Roles" prefWidth="201.5999755859375" text="Roles" />
+                <!-- Add more columns as needed -->
+            </columns>
+        </TableView>
+
+        <!-- Button to Delete User -->
+        <Button layoutX="837.0" layoutY="518.0" mnemonicParsing="false" onAction="#delete" prefHeight="30.0" prefWidth="94.0" styleClass="delete-btn" stylesheets="@StyleMaterieles.css" text="Delete User" />
+
+        <ImageView fitHeight="80.0" fitWidth="85.0" layoutX="91.0" layoutY="11.0">
+            <image>
+                <Image url="file:/C:\Users\jawhe\OneDrive\Bureau\wetransfer_3a32-healthswift-javafx_2024-05-04_2208\wetransfer_3a32-healthswift-javafx_2024-05-04_2208\3A32-HealthSwift-JAVAFX\src\main\images\Capture d'écran 2024-02-18 152610.png" />
+            </image>
+        </ImageView>
+        <TextField fx:id="searchField" layoutX="305.0" layoutY="56.0" onKeyReleased="#search" prefHeight="30.0" prefWidth="151.0" promptText="Search..." />
+        <Button fx:id="pdfButton" layoutX="345.0" layoutY="471.0" mnemonicParsing="false" onAction="#generatePDF" prefHeight="27.0" prefWidth="94.0" styleClass="excel-btn" stylesheets="@StyleMaterieles.css" text="Pdf" />
+      <ImageView fitHeight="35.0" fitWidth="29.0" layoutX="327.0" layoutY="16.0">
+
+      </ImageView>
+          <HBox spacing="10" />
+
+              <!-- Display Name and Role of Connected User -->
+
+           <Button id="StyleMaterieles.css" fx:id="ascButton" layoutX="104.0" layoutY="472.0" mnemonicParsing="false" onAction="#sortAsc" prefHeight="26.0" prefWidth="58.0" stylesheets="@StyleMaterieles.css" text="ASC">
+         <styleClass>
+            <String fx:value="sort-button" />
+            <String fx:value="add-btn" />
+         </styleClass></Button>
+           <Button fx:id="descButton" layoutX="181.0" layoutY="472.0" mnemonicParsing="false" onAction="#sortDesc" stylesheets="@StyleMaterieles.css" text="DESC">
+         <styleClass>
+            <String fx:value="sort-button" />
+            <String fx:value="clear-btn" />
+         </styleClass></Button>
+        <Button layoutX="468.0" layoutY="471.0" mnemonicParsing="false" onAction="#statis" prefHeight="27.0" prefWidth="94.0" styleClass="excel-btn" stylesheets="@StyleMaterieles.css" text="Stat" />
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="259.0" layoutY="54.0">
+         <image>
+            <Image url="file:/C:\Users\jawhe\OneDrive\Bureau\wetransfer_3a32-healthswift-javafx_2024-05-04_2208\wetransfer_3a32-healthswift-javafx_2024-05-04_2208\3A32-HealthSwift-JAVAFX\src\main\images\png-clipart-magnifying-glass-computer-icons-searching-glass-share-icon.png" />
+         </image>
+      </ImageView>
+
+    </children>
+</AnchorPane>

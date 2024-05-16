@@ -1,0 +1,60 @@
+
+#PassDemande{
+    -fx-pref-height: 35px;
+    -fx-pref-width: 200px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ff8080; /* Rouge clair */
+    -fx-text-fill: #ffffff;
+}
+
+#PassDemande:hover,
+#PassDemande:pressed {
+    -fx-background-color: #6699ff; /* Bleu clair */
+    -fx-border-color: #6699ff; /* Bleu clair */
+}
+#ConsulterRendezV{
+    -fx-pref-height: 35px;
+    -fx-pref-width: 200px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ff8080; /* Rouge clair */
+    -fx-text-fill: #ffffff;
+}
+
+#ConsulterRendezV:hover,
+#ConsulterRendezV:pressed {
+    -fx-background-color: #6699ff; /* Bleu clair */
+    -fx-border-color: #6699ff; /* Bleu clair */
+}
+
+
+
+
+.vbox-card {
+    -fx-background-color: #ffffff; /* Couleur de fond */
+    -fx-background-radius: 20px; /* Rayon des coins augmenté */
+    -fx-padding: 10px; /* Marge interne */
+    -fx-spacing: 5px; /* Espacement entre les enfants */
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.2) , 10,0,0,1 );
+}
+
+/* Style des enfants du VBox (contenu de la carte) */
+.vbox-card .card-content {
+    -fx-padding: 5px; /* Marge interne */
+}
+#Localisation{
+    /* Gradient background from light sky blue to navy blue */
+    -fx-background-color: linear-gradient(to bottom, #87CEEB, #56b4e9);
+    -fx-text-fill: #ffffff; /* Maintain white text for contrast */
+    -fx-font-family: 'Arial'; /* Change to Arial for a clean and readable appearance */
+    -fx-font-size: 14px; /* Suitable font size for button text */
+    -fx-font-weight: bold; /* Bold text to make the button text stand out */
+    -fx-background-radius: 10; /* Rounded corners for a modern touch */
+    -fx-border-radius: 10; /* Ensure the border radius matches the background */
+    -fx-padding: 10 20; /* Appropriate padding for comfort and a better clickable area */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.3, 0, 2); /* Subtle shadow for a 3D effect */
+}
+#Localisation:hover {
+    /* Slightly darker gradient for hover effect */
+    -fx-background-color: linear-gradient(to bottom, #6495ED, #000033);
+}
+

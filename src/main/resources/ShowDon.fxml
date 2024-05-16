@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" stylesheets="@StyleSheets/Details.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.ShowDonController">
+    <content>
+        <VBox fx:id="vbox" alignment="CENTER" minHeight="200" spacing="10">
+            <children>
+                <HBox alignment="TOP_LEFT"> <!-- Panneau pour le bouton de retour -->
+                    <Button fx:id="backButton" onAction="#handleBack" text="&lt;&lt;" />
+                </HBox>
+                <Label styleClass="title" text=" Détails du don" /> <!-- Titre centré -->
+                <Label fx:id="typeLabel" styleClass="label" text="Type:" />
+                <Label fx:id="amountLabel" styleClass="label" text="Montant:" />
+                <Label fx:id="dateLabel" styleClass="label" text="Date de remise:" />
+                <ImageView fx:id="qrCodeImage" fitHeight="100" fitWidth="100" />
+
+                <HBox alignment="CENTER" spacing="10"> <!-- Panneau pour les boutons Modifier et Supprimer -->
+                    <Button fx:id="updateButton" styleClass="button" text="Modifier" />
+                    <Button fx:id="deleteButton" styleClass="button" text="Supprimer" />
+                </HBox>
+            <Button fx:id="PasserDemande" mnemonicParsing="false" onAction="#PasserDemande" text="Passer une Demande" />
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

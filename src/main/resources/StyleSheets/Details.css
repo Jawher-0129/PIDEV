@@ -1,0 +1,36 @@
+/* styles.css */
+
+/* VBox */
+#vbox {
+
+    -fx-spacing: 20px; /* espace entre les enfants du VBox */
+    -fx-padding: 50px; /* espacement autour du VBox */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 0);
+}
+
+/* Boutons */
+.button {
+    -fx-background-color: #64B5F6; /* couleur de fond pour les boutons */
+    -fx-text-fill: white; /* couleur du texte des boutons */
+    -fx-font-size: 16px; /* taille de la police pour les boutons */
+    -fx-padding: 10px 20px; /* espace intérieur des boutons */
+}
+
+.button:hover {
+    -fx-background-color: #42A5F5; /* couleur de fond des boutons au survol */
+}
+
+/* Labels */
+.label {
+    -fx-font-size: 18px; /* taille de la police pour les labels */
+    -fx-text-fill: black; /* couleur du texte des labels */
+}
+/* Details.css */
+
+/* Titre */
+.title {
+    -fx-font-size: 28px; /* taille de la police pour le titre */
+    -fx-font-weight: bold; /* mettre en gras */
+    -fx-text-fill: #2196F3; /* couleur du texte */
+    -fx-padding: 10px; /* espacement autour du titre */
+}

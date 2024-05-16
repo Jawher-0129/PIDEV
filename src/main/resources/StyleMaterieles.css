@@ -1,0 +1,252 @@
+
+.top-form {
+    -fx-background-color: #fff;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .2px .4px;
+}
+
+.semi-top-form {
+    -fx-background-color: #efefef;
+    -fx-border-color: #000;
+    -fx-border-width: .2px .4px .4px .4px;
+}
+
+.close {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+.close:hover {
+    -fx-background-color: #fb3d63;
+}
+
+.minimize {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+.minimize:hover {
+    -fx-background-color: #ddd;
+}
+
+.nav-form{
+    -fx-background-color:linear-gradient(to bottom right, #2d658c, #2ca772);
+}
+
+.nav-btn{
+    -fx-background-color:transparent;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:15px;
+    -fx-font-family:"Arial";
+    -fx-alignment:CENTER;
+}
+.nav-btn:hover{
+    -fx-background-color:#fff;
+    -fx-text-fill:#000;
+}
+.white-border-text-field {
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+}
+
+.logout {
+    -fx-background-color: #2c84bf;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+}
+.logout:hover {
+    -fx-background-color: #1593e7;
+}
+
+.shadow {
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 0, 0);
+}
+
+.white-bg {
+    -fx-background-color: #fff;
+    -fx-background-radius: 8px;
+}
+
+.card {
+    -fx-background-color: linear-gradient(to right, #344250, #3c6382);
+    -fx-background-radius: 4px;
+}
+
+.search {
+    -fx-background-color: transparent;
+    -fx-border-color: linear-gradient(to bottom right, #2d658c, #2ca772);
+    -fx-border-width: .8px;
+    -fx-border-radius: 8px;
+    -fx-font-family: "Tahoma";
+    -fx-font-size: 14px;
+    -fx-padding: 0px 0px 0px 28px;
+}
+
+.search:focused {
+    -fx-border-width: 1.8px;
+}
+
+
+
+
+.table-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0px;
+    -fx-border-color: linear-gradient(to bottom right, #2d658c, #4aa3df);
+
+    -fx-border-width: 2px;
+    -fx-border-radius: 8px;
+}
+.table-view .table-column {
+    -fx-alignment: CENTER;
+}
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom right,  #2d658c, #4aa3df);
+    -fx-background-radius: 8px 8px 0px 0px;
+    -fx-background-inset: 0 0 0 0;
+}
+.add-btn{
+    -fx-background-color:#2d5278;
+    -fx-background-radius:8px;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+}
+.add-btn:hover{
+    -fx-background-color:#2268ae;
+}
+
+.update-btn{
+    -fx-background-color:#2d7755;
+    -fx-background-radius:8px;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+}
+.update-btn:hover{
+    -fx-background-color:#22ad72;
+}
+
+.delete-btn{
+    -fx-background-color:#90242f;
+    -fx-background-radius:8px;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+}
+.delete-btn:hover{
+    -fx-background-color:#c51f32;
+}
+
+
+
+.table-view .column-header, .filter {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+}
+.table-view .column-header .label {
+    -fx-text-fill: #fff;
+    -fx-font-family: "Arial";
+}
+
+.textfield {
+    -fx-background-color: linear-gradient(to bottom, #efefef, #eee);
+    -fx-background-radius: 4px;
+    -fx-border-color: linear-gradient(to bottom right, #2d658c, #2ca772);
+    -fx-border-width: .8px;
+    -fx-font-family: "Tahoma";
+    -fx-border-radius: 4px;
+}
+
+/* Style de base pour la liste déroulante */
+.dropdown {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-border-color: #000; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-padding: 5px; /* Marge intérieure */
+    -fx-font-family: "Arial"; /* Police */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-cursor: pointer; /* Curseur */
+    -fx-border-radius: 4px; /* Rayon de la bordure */
+}
+
+/* Style pour la flèche de la liste déroulante */
+.dropdown-arrow {
+    -fx-fill: #000; /* Couleur de la flèche */
+    -fx-font-size: 12px; /* Taille de la flèche */
+}
+
+/* Style pour les options de la liste déroulante */
+.dropdown-options {
+    -fx-background-color: #fff; /* Couleur de fond */
+    -fx-border-color: #000; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-padding: 5px; /* Marge intérieure */
+    -fx-font-family: "Arial"; /* Police */
+    -fx-font-size: 14px; /* Taille de la police */
+    -fx-cursor: pointer; /* Curseur */
+    -fx-border-radius: 4px; /* Rayon de la bordure */
+}
+
+/* Style pour les options au survol */
+.dropdown-options:hover {
+    -fx-background-color: #f0f0f0; /* Couleur de fond au survol */
+}
+
+/* Style pour l'option sélectionnée */
+.dropdown-option-selected {
+    -fx-background-color: #2d658c; /* Couleur de fond de l'option sélectionnée */
+    -fx-text-fill: #fff; /* Couleur du texte de l'option sélectionnée */
+}
+
+
+.choose-image-btn {
+    -fx-background-color: #4aa3df; /* Couleur de fond */
+    -fx-background-radius: 20px; /* Rayon de bordure */
+    -fx-cursor: hand; /* Curseur au survol */
+    -fx-text-fill: #fff; /* Couleur du texte */
+    -fx-font-size: 16px; /* Taille de la police */
+    -fx-font-family: "Arial"; /* Police */
+    -fx-padding: 8px 20px; /* Marge intérieure */
+    -fx-border-color: #2d658c; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 6, 0, 0, 0); /* Ombre portée */
+}
+
+.choose-image-btn:hover {
+    -fx-background-color: #368ecf; /* Couleur de fond au survol */
+}
+
+.textfield:focused {
+    -fx-background-color: #fff;
+    -fx-border-width: 1px;
+}
+
+.clear-btn{
+    -fx-background-color:#6e2275;
+    -fx-background-radius:8px;
+    -fx-cursor:hand;
+    -fx-text-fill:#fff;
+    -fx-font-size:14px;
+    -fx-font-family:"Arial";
+}
+.clear-btn:hover{
+    -fx-background-color:#ae21ac;
+}
+.excel-btn {
+    -fx-background-color: #fff;
+    -fx-text-fill: #2d7755;
+    -fx-background-radius: 8px;
+    -fx-font-size: 14px;
+    -fx-font-family: "Arial";
+    -fx-cursor: hand;
+    -fx-border-color: #2d7755;
+    -fx-border-radius: 8px;
+}
+
+.excel-btn:hover{
+    -fx-background-color:#2d7755;
+    -fx-text-fill: #fff;
+}

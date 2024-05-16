@@ -1,0 +1,119 @@
+.text-field {
+    -fx-pref-height: 35px;
+    -fx-pref-width: 250px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.text-field:focus{
+    -fx-border-color: #0066cc;
+    -fx-background-color: #f2f2f2;
+}
+
+.text-field:hover {
+    -fx-border-color: #999999;
+}
+
+/* Appliquer un style aux text areas */
+.text-area {
+    -fx-pref-height: 112px;
+    -fx-pref-width: 164px;
+    -fx-font-size: 14px;
+}
+
+/* Appliquer un style au choice box */
+.choice-box {
+    -fx-pref-height: 35px;
+    -fx-pref-width: 250px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+}
+
+.choice-box:focus {
+    -fx-border-color: #0066cc;
+    -fx-background-color: #f2f2f2;
+}
+
+.choice-box:hover {
+    -fx-border-color: #999999;
+}
+.custom-table {
+    -fx-background-color: #f4f4f4;
+}
+
+.custom-table .column-header {
+    -fx-background-color: #e3e3e3;
+    -fx-text-fill: #333333;
+    -fx-font-weight: bold;
+}
+
+.custom-table .table-cell {
+    -fx-alignment: center;
+}
+
+.custom-table .table-row-cell:nth-child(odd) {
+    -fx-background-color: #f8f8f8;
+}
+
+.custom-table .table-row-cell:nth-child(selected) {
+    -fx-background-color: #cbe1f2;
+}
+
+.custom-table .table-row-cell:empty {
+    -fx-background-color: transparent;
+}
+
+.custom-table .table-row-cell:hover {
+    -fx-background-color: #e0e0e0;
+}
+.search-field {
+    -fx-prompt-text-fill: gray;
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+    -fx-border-radius: 20px; /* Rayon de bordure pour les coins gauche et droit */
+    -fx-background-radius: 20px; /* Rayon de fond pour les coins gauche et droit */
+    -fx-padding: 5px;
+    -fx-font-size: 14px;
+}
+
+.search-field:focused {
+    -fx-border-color: dodgerblue;
+    -fx-background-color: white;
+}
+#navBar {
+    -fx-background-color: dodgerblue; /* Couleur de fond blanche sale */
+    -fx-padding: 10px; /* Marge intérieure pour le contenu du navBar */
+
+}
+.vbox-container {
+    -fx-alignment: center;
+    -fx-border-color: #002395; /* Bleu France */
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px;
+}
+.vbox-container > * {
+    -fx-spacing: 10px;
+}
+#add {
+    -fx-pref-height: 35px;
+    -fx-pref-width: 100px;
+    -fx-font-size: 14px;
+    -fx-background-color: #ff8080; /* Rouge clair */
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ff8080; /* Rouge clair */
+    -fx-border-radius: 5px;
+}
+
+#add:hover,
+#add:pressed {
+    -fx-background-color: #6699ff; /* Bleu clair */
+    -fx-border-color: #6699ff; /* Bleu clair */
+}

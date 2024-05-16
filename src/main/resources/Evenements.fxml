@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1350.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EvenementController">
+    <children>
+        <AnchorPane layoutX="14.0" layoutY="20.0" prefHeight="493.0" prefWidth="381.0">
+            <children>
+                <AnchorPane layoutX="109.0" layoutY="8.0" prefHeight="110.0" prefWidth="110.0" />
+                <ImageView fx:id="imageView" fitHeight="110.0" fitWidth="110.0" layoutX="117.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="event_importBtn" layoutX="92.0" layoutY="99.0" mnemonicParsing="false" onAction="#importImage" prefHeight="38.0" prefWidth="159.0" styleClass="choose-image-btn" stylesheets="@StyleMaterieles.css" text="insert image " />
+                <Label layoutX="13.0" layoutY="160.0" stylesheets="@StyleMaterieles.css" text="Titre" />
+                <TextField fx:id="enent_title" layoutX="73.0" layoutY="156.0" prefHeight="25.0" prefWidth="149.0" styleClass="textfield" stylesheets="@StyleMaterieles.css" />
+                <Label fx:id="titleErrorLabel" layoutX="74.0" layoutY="181.0" prefHeight="17.0" prefWidth="149.0" textFill="red" />
+                <Label layoutX="13.0" layoutY="216.0" stylesheets="@StyleMaterieles.css" text="Date" />
+                <DatePicker fx:id="event_date" layoutX="74.0" layoutY="212.0" prefHeight="25.0" prefWidth="149.0" styleClass="textfield" stylesheets="@StyleMaterieles.css" />
+                <Label fx:id="dateErrorLabel" layoutX="74.0" layoutY="247.0" prefHeight="17.0" prefWidth="146.0" textFill="red" />
+                <Label layoutX="19.0" layoutY="280.0" stylesheets="@StyleMaterieles.css" text="Duree" />
+                <TextField fx:id="event_duree" layoutX="74.0" layoutY="276.0" styleClass="textfield" stylesheets="@StyleMaterieles.css" />
+                <Label fx:id="dureeErrorLabel" layoutX="74.0" layoutY="301.0" prefHeight="17.0" prefWidth="146.0" textFill="red" />
+                <Label layoutX="24.0" layoutY="333.0" stylesheets="@StyleMaterieles.css" text="Lieu" />
+                <TextField fx:id="event_lieu" layoutX="73.0" layoutY="329.0" styleClass="textfield" stylesheets="@StyleMaterieles.css" />
+                <Label fx:id="lieuErrorLabel" layoutX="73.0" layoutY="354.0" prefHeight="17.0" prefWidth="146.0" textFill="red" />
+                <Label layoutX="13.0" layoutY="381.0" prefHeight="17.0" prefWidth="57.0" stylesheets="@StyleMaterieles.css" text="Objective" />
+                <TextField fx:id="event_obj" layoutX="72.0" layoutY="377.0" styleClass="textfield" stylesheets="@StyleMaterieles.css" />
+                <Label fx:id="objErrorLabel" layoutX="72.0" layoutY="406.0" prefHeight="17.0" prefWidth="150.0" textFill="red" />
+                <Label layoutX="14.0" layoutY="438.0" prefHeight="17.0" prefWidth="57.0" stylesheets="@StyleMaterieles.css" text="Actualite" />
+                <ComboBox fx:id="ActualiteRelated" layoutX="71.0" layoutY="434.0" prefWidth="150.0" styleClass="textfield" stylesheets="@StyleMaterieles.css" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="363.0" layoutY="13.0" prefHeight="506.0" prefWidth="776.0" stylesheets="@StyleMaterieles.css">
+            <children>
+                <TextField fx:id="chercherEvent" layoutX="14.0" layoutY="46.0" onKeyTyped="#chercherEvenement" promptText="search" styleClass="search" stylesheets="@StyleMaterieles.css" />
+                <TableView fx:id="tableEvent" layoutX="8.0" layoutY="77.0" onMouseClicked="#selectData" prefHeight="406.0" prefWidth="646.0">
+                    <columns>
+                        <TableColumn fx:id="colIdEvent" prefWidth="43.0" text="Id" />
+                        <TableColumn fx:id="colTitreEvent" prefWidth="94.0" text="Titre" />
+                        <TableColumn fx:id="colDateEvent" prefWidth="101.0" text="Date" />
+                        <TableColumn fx:id="colDureeEvent" prefWidth="60.0" text="Duree" />
+                        <TableColumn fx:id="colLieuEvent" prefWidth="89.0" text="Lieu" />
+                        <TableColumn fx:id="colObjEvent" prefWidth="96.0" text="Objective" />
+                        <TableColumn fx:id="colImageEvent" prefWidth="75.0" text="Image" />
+                        <TableColumn fx:id="colActualiteId" prefWidth="92.0" text="Actualite" />
+                    </columns>
+                </TableView>
+                <Text fill="#3f4a75" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Evenements " wrappingWidth="273.724609375">
+                    <font>
+                        <Font name="System Bold" size="22.0" />
+                    </font>
+                </Text>
+            </children>
+        </AnchorPane>
+        <ButtonBar layoutX="310.0" layoutY="533.0" prefHeight="40.0" prefWidth="200.0">
+            <buttons>
+                <Button fx:id="addEvent_btn" mnemonicParsing="false" onAction="#AddEvent" prefHeight="25.0" prefWidth="57.0" styleClass="add-btn" stylesheets="@StyleMaterieles.css" text="Add" />
+                <Button fx:id="UpdateEvent_btn" mnemonicParsing="false" onAction="#UpdateEvent" styleClass="update-btn" stylesheets="@StyleMaterieles.css" text="Update" />
+                <Button fx:id="clearEvent_Btn" mnemonicParsing="false" onAction="#ClearEvent" prefHeight="25.0" prefWidth="55.0" styleClass="clear-btn" stylesheets="@StyleMaterieles.css" text="Clear" />
+                <Button fx:id="deleteEvent_btn" mnemonicParsing="false" onAction="#DeleteEvent" prefHeight="26.0" prefWidth="64.0" styleClass="delete-btn" stylesheets="@StyleMaterieles.css" text="Delete" />
+            </buttons>
+        </ButtonBar>
+      <Button fx:id="buttonStatEvent" layoutX="761.0" layoutY="540.0" mnemonicParsing="false" onAction="#statis" prefHeight="38.0" prefWidth="123.0" styleClass="choose-image-btn" stylesheets="@StyleMaterieles.css" text="Statistique" />
+    </children>
+</AnchorPane>

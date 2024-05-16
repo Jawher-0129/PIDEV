@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@StyleSheets/CampagneView.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="controllers.CampagneViewController">
+    <children>
+        <VBox alignment="CENTER" prefHeight="700.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <Label style="-fx-font-size: 24px; -fx-padding: 10px;" styleClass="campaign-title" stylesheets="@StyleSheets/CampagneView.css" text="Explorez les Campagnes" />
+                <Button fx:id="addCampagneButton" prefHeight="29.0" prefWidth="117.0" style="-fx-margin: 10px;" styleClass="white-bg" stylesheets="@StyleSheets/Style.css" text="Add Campaign" />
+                <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true">
+                    <content>
+                        <TilePane fx:id="campagneContainer" alignment="CENTER" hgap="10" prefColumns="3" vgap="10">
+                            <padding>
+                                <Insets bottom="10" left="10" right="10" top="10" />
+                            </padding>
+                        </TilePane>
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

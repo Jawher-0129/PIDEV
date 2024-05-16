@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="700.0" prefWidth="1100.0" spacing="10" stylesheets="@StyleSheets/DonView.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DonViewController">
+    <children>
+        <!-- Ajout d'un titre -->
+        <Label styleClass="Titre" text="Explorez les dons" />
+        <!-- Ajout d'un lien pour ajouter un don -->
+        <Hyperlink fx:id="addDonLink" styleClass="hyperlink" text="Ajouter Don" />
+        <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" style="-fx-background-color: #f2fafc;" styleClass="scroll-pane">
+            <content>
+                <TilePane fx:id="cardsContainer" hgap="10" prefColumns="4" style="-fx-background-color: #f2fafc;" styleClass="tile-pane" vgap="10">
+                    <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                    </padding>
+                    <!-- Les cartes seront ajoutées ici dynamiquement -->
+                </TilePane>
+            </content>
+        </ScrollPane>
+    </children>
+</VBox>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane prefHeight="820.0" prefWidth="1237.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StatisticsController">
+    <children>
+        <!-- Position the title label at the top of the AnchorPane -->
+        <Label fx:id="titleLabel" layoutX="455.0" prefHeight="48.0" prefWidth="229.0" styleClass="title-label" stylesheets="@StyleSheets/Stat.css" text="Statistics" />
+
+        <!-- ScrollPane starts below the title label -->
+        <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="50" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="70">
+            <content>
+                <GridPane hgap="10" stylesheets="@StyleSheets/Stat.css" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10" prefHeight="30" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="300" vgrow="ALWAYS" />
+                        <RowConstraints minHeight="300" vgrow="ALWAYS" />
+                    </rowConstraints>
+                    <BarChart fx:id="donationsPerCampaignChart" animated="false" barGap="0" legendVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <xAxis><CategoryAxis autoRanging="true" label="Campaigns" side="BOTTOM" /></xAxis>
+                        <yAxis><NumberAxis autoRanging="true" label="Donations" side="LEFT" /></yAxis>
+                    </BarChart>
+                    <BarChart fx:id="donationsPerMonthChart" animated="false" barGap="0" legendVisible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <xAxis><CategoryAxis autoRanging="true" label="Month" side="BOTTOM" /></xAxis>
+                        <yAxis><NumberAxis autoRanging="true" label="Donations" side="LEFT" /></yAxis>
+                    </BarChart>
+                    <BarChart fx:id="campaignsPerMonthChart" animated="false" barGap="0" legendVisible="false" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <xAxis><CategoryAxis autoRanging="true" label="Month" side="BOTTOM" /></xAxis>
+                        <yAxis><NumberAxis autoRanging="true" label="Campaigns" side="LEFT" /></yAxis>
+                    </BarChart>
+                    <PieChart fx:id="donationsWithWithoutCampaignChart" animated="false" legendVisible="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                    <Label styleClass="chart-title" text="Donations With and Without Campaign" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                </GridPane>
+            </content>
+        </ScrollPane>
+        <Button fx:id="assignButton" layoutX="1078.0" layoutY="781.0" onAction="#assignDonations" styleClass="form-datepicker" text="Assign Donations" textFill="#4370b9" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="50.0">
+
+         <stylesheets>
+            <URL value="@StyleSheets/Style.css" />
+            <URL value="@StyleSheets/form.css" />
+         </stylesheets></Button>
+        <Button fx:id="sendEmailButton" layoutX="842.0" layoutY="772.0" onAction="#handleSendEmail" styleClass="form-datepicker" stylesheets="@StyleSheets/form.css" text="Send Campaign Suggestions" textFill="#ed3252" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="195.0" />
+    </children>
+</AnchorPane>
