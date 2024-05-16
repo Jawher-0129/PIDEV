@@ -1,0 +1,85 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+ 
+ <style>
+
+.container {
+    max-width: 500px;
+}
+ 
+    </style>
+
+<div class="container">
+  <h1 class="text-center mt-5">Roles Stats</h1>
+
+  <div class="chart-container mt-5">
+    <canvas id="userBarChart" height="150" width="300"></canvas>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var ctx = document.getElementById('userBarChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [
+          {% for stat in stats %}
+          {% if stat.roles != 'ROLE_ADMIN' %}
+          '{{ stat.roles | join(", ") }}',
+          {% endif %}
+          {% endfor %}
+        ],
+        datasets: [{
+          label: 'Number of Users',
+          data: [
+            {% for stat in stats %}
+            {% if stat.roles != 'ROLE_ADMIN' %}
+            {{ stat.userCount }},
+            {% endif %}
+            {% endfor %}
+          ],
+          backgroundColor: 'rgba(54, 162, 235, 0.6)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        plugins: {
+          legend: {
+            display: false
+          },
+          title: {
+            display: true,
+            text: 'Users by Role'
+          },
+          tooltips: {
+            callbacks: {
+              label: function (context) {
+                var label = context.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed && context.parsed.y !== null) {
+                  label += context.parsed.y + ' (' + Math.round((context.parsed.y / context.dataset.data.reduce((a, b) => a + b, 0)) * 100) + '%)';
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            stacked: true
+          },
+          y: {
+            stacked: true
+          }
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Form{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center">{{ title }}</h1>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_start(form, {'attr': {'onsubmit': 'return validateForm(event)'}}) }}
+
+                        <div class="mb-3">
+                            {{ form_row(form.Titre, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Titre) %}
+                                <div id="TitreError" class="invalid-feedback">
+                                    {{ form_errors(form.Titre) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Image, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Image) %}
+                                <div id="ImageError" class="invalid-feedback">
+                                    {{ form_errors(form.Image) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Description, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Description) %}
+                                <div id="DescriptionError" class="invalid-feedback">
+                                    {{ form_errors(form.Description) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Date_debut, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Date_debut) %}
+                                <div id="Date_debutError" class="invalid-feedback">
+                                    {{ form_errors(form.Date_debut) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Date_fin, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Date_fin) %}
+                                <div id="Date_finError" class="invalid-feedback">
+                                    {{ form_errors(form.Date_fin) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="{{ path('all_campagnes') }}" class="mt-3 btn btn-secondary">Retour</a>
+    </div>
+
+    <script>
+        function validateForm(event) {
+            event = event || window.event; // Use window.event if event is undefined
+           
+            // Display alert and prevent form submission
+            var errorMessages = [];
+
+            // Check 'Date_fin' and 'Date_debut' fields
+            var dateDebutField = document.getElementById('{{ form.Date_debut.vars.id }}');
+            var dateFinField = document.getElementById('{{ form.Date_fin.vars.id }}');
+
+            if (dateDebutField && dateFinField) {
+                var selectedDateDebut = new Date(dateDebutField.value);
+                var selectedDateFin = new Date(dateFinField.value);
+
+              if (selectedDateFin < selectedDateDebut) {
+                    updateErrorMessage('The end date must be greater than the start date.', 'Date_finError');
+                    event.preventDefault();
+                    return;
+                }
+            }
+
+            if (errorMessages.length > 0) {
+                event.preventDefault();
+            }
+        }
+    </script>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Don Index{% endblock %}
+
+{% block body %}
+
+<div style="text-align: center;">
+    <h1 class="mb-4">Liste des dons</h1>
+    <div class="d-flex justify-content-center">
+        {{ form_start(searchForm, {'attr': {'class': 'form-inline'}}) }}
+        <div class="input-group">
+            {{ form_widget(searchForm.searchTerm, {'attr': {'class': 'form-control', 'placeholder': 'Rechercher...'}}) }}
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+        {{ form_end(searchForm) }}
+    </div>
+</div>
+<br>
+
+{% if dons is not empty %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Don ID</th>
+                <th scope="col">Type</th>
+                <th scope="col">Date Remise</th>
+                <th scope="col">Montant</th>
+                <th scope="col">Campagne</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for don in dons %}
+                <tr>
+                    <th scope="row">{{ don.id }}</th>
+                    <td>{{ don.Type }}</td>
+                    <td>{{ don.DateRemise ? don.DateRemise|date('Y-m-d') : '' }}</td>
+                    <td>{{ don.Montant }}</td>
+                    <td>{{ don.Campagne ? don.Campagne.Titre : 'N/A' }}</td>
+                    <td>
+                       <a href="{{ path('app_don_show_back', {'id': don.id}) }}" class="btn btn-info">Détails</a>
+                       <a href="{{ path('editDon_back', {'id': don.id}) }}"  class="btn btn-light btn-sm">Modifier</a>
+                    </td> 
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Pagination Controls -->
+    <div class="navigation d-flex justify-content-center">
+    {{ knp_pagination_render(dons) }}
+</div>
+{% else %}
+    <p>Aucun enregistrement trouvé.</p>
+{% endif %}
+
+<div class="mt-3">
+  <a href="{{ path('app_don_new_back') }}" class="btn btn-success" style="background-color: #E84B4B; color: #fff;">Ajouter Don</a>
+</div>
+
+{% endblock %}

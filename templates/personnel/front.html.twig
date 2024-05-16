@@ -1,0 +1,193 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos Personnels{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="path/to/bootstrap.min.css">
+
+    <!-- Custom CSS for star icons -->
+    <style>
+        /* Define custom colors */
+        :root {
+            --gold-color: gold;
+        }
+
+        /* Define star icon */
+        .star {
+            font-size: 24px; /* Adjust size as needed */
+            color: #ccc; /* Outline color */
+        }
+
+        /* Define filled star icon */
+        .star-filled {
+            color: var(--gold-color); /* Use gold color variable */
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Nos Personnels</h5>
+                <h1 class="display-4">Professionnels de santé qualifiés</h1>
+            </div>
+            <div class="owl-carousel team-carousel position-relative">
+                {% if personnels is not empty %}
+                    {% for personnel in personnels %}
+                        <div class="team-item">
+                            <div class="row g-0 bg-light rounded overflow-hidden">
+                                <div class="col-12 col-sm-5 h-100">
+                                    {% if personnel.Image starts with 'C' %}
+                                    {% set fileName = personnel.Image|split('\\')|last %}
+                                        <img class="img-fluid h-100" src="{{ asset('uploads/' ~ fileName) }}" style="object-fit: cover;">
+                                        {% else %}
+                                        <img class="img-fluid h-100" src="{{ asset('uploads/Images/' ~ personnel.Image) }}" style="object-fit: cover;">
+                                        {% endif %}
+                                </div>
+                                <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                                    <div class="mt-auto p-4">
+                                        <h3>{{ personnel.getNom() }} {{ personnel.getPrenomPersonnel() }}</h3>
+                                        <h6 class="fw-normal fst-italic text-primary mb-4">Role: {{ personnel.getRole() }}</h6>
+                                        {% if personnel.getExperience() is not null %}
+                                            <p class="m-0">Experience: {{ personnel.getExperience() }}</p>
+                                        {% endif %}
+                                        
+                                        <!-- Display the Rating with Bootstrap Stars -->
+                                        <div class="rating">
+                                            {% for i in 1..5 %}
+                                                {% if i <= personnel.rating %}
+                                                    <span class="star">&#9733;</span> <!-- Filled star -->
+                                                {% else %}
+                                                    <span class="star">&#9734;</span> <!-- Empty star -->
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex mt-auto border-top p-4">
+                                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-twitter"></i></a>
+                                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+                                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-md-12">
+                        <p>No personnel found.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Pricing Plan Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Our Staff</h5>
+                <h1 class="display-4">Staff</h1>
+            </div>
+            <div class="owl-carousel price-carousel position-relative" style="padding: 0 45px 45px 45px;">
+                <div class="bg-light rounded text-center">
+                    <div class="position-relative">
+                        <img class="img-fluid rounded-top" src="public/assets/img/price-1.jpg" alt="">
+                    </div>
+                    <div class="text-center py-5">
+                        <p>Name : Caroline Lockwood</p>
+                        <p>Infermiére</p>
+                        <p>ID : 5A </p>
+                        <p>Expérience : 7 </p>
+                        <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">Show</a>
+                    </div>
+                </div>
+                <div class="bg-light rounded text-center">
+                    <div class="position-relative">
+                        <img class="img-fluid rounded-top" src="img/price-2.jpg" alt="">
+                    </div>
+                    <div class="text-center py-5">
+                        <p>Name : Bonnie Bennet </p>
+                        <p>Radiologue</p>
+                        <p>ID : 3B</p>
+                        <p>Expérience : 5</p>
+                        <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">Show</a>
+                    </div>
+                </div>
+                <div class="bg-light rounded text-center">
+                    <div class="position-relative">
+                        <img class="img-fluid rounded-top" src="img/price-3.jpg" alt="">
+                    </div>
+                    <div class="text-center py-5">
+                        <p>Name : Hayley carl </p>
+                        <p>Neurologue</p>
+                        <p>ID : 7C</p>
+                        <p>Expérience : 4D</p>
+                        <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">Show</a>
+                    </div>
+                </div>
+                <div class="bg-light rounded text-center">
+                    <div class="position-relative">
+                        <img class="img-fluid rounded-top" src="img/price-4.jpg" alt="">
+                    </div>
+                    <div class="text-center py-5">
+                        <p>Name : Klaus Maikelson </p>
+                        <p>Cardiologue</p>
+                        <p>ID : 9E</p>
+                        <p>Expérience : 9</p>
+                        <a href="" class="btn btn-primary rounded-pill py-3 px-5 my-2">Show</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- Pricing Plan End -->
+<div class="container-fluid pt-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+            <!-- Search Start -->
+            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-primary pb-2">
+                Find A Doctor
+            </h5>
+            <h1 class="display-4 mb-4">Find A Healthcare Professionals</h1>
+            <h5 class="fw-normal">
+                <!-- Additional descriptive text can be added here -->
+            </h5>
+            <!-- Search End -->
+        </div>
+        <form action="{{ path('app_personnel_show') }}" method="GET" class="mx-auto" style="width: 100%; max-width: 600px;">
+            <div class="input-group">
+                <select name="role" class="form-select border-primary w-25" style="height: 60px;">
+                    <option value="">All Roles</option>
+                    <option value="chirurgie">Chirurgie</option>
+                    <option value="radiologie">Radiologie</option>
+                    <option value="anesthesie">Anesthésie</option>
+                    <option value="cardiologie">Cardiologie</option>
+                    <option value="infirmerie">Infirmière</option>
+                    <option value="neurologie">Neurologie</option>
+                </select>
+                <input type="text" name="nom" class="form-control border-primary w-50" placeholder="Keyword">
+                <button type="submit" class="btn btn-dark border-0 w-25">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+    <div id="google_translate_element"></div>
+    <script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'fr', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <!-- Include Bootstrap JS and any other necessary scripts -->
+    <script src="path/to/bootstrap.min.js"></script>
+    <script src="path/to/jquery.min.js"></script>
+{% endblock %}

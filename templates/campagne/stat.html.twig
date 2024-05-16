@@ -1,0 +1,175 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+<style>
+    .stats-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .chart-container {
+        flex: 0 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+        box-sizing: border-box;
+        margin: 10px;
+    }
+    @media (max-width: 768px) {
+        .chart-container {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+    </style>
+<div><h1>Donation Statistics</h1></div>
+<div class="stats-container">
+    <div class="chart-container">
+        <canvas id="campaignDonationChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="monthlyDonationChart"></canvas>
+    </div>
+    <!-- Si vous avez un troisième graphique, il commencera sur une nouvelle ligne dans cette configuration -->
+    <div class="chart-container">
+        <canvas id="campaignsByStartMonthChart"></canvas>
+    </div>
+</div>
+
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var campaignNames = {{ campaignNames|json_encode()|raw }};
+        var donationCounts = {{ donationCounts|json_encode()|raw }};
+        var monthlyDonationData = {{ DonationChartData|json_encode()|raw }};
+        var campaignsByStartMonthData = {{ CampaignsByStartMonth|json_encode()|raw }};
+
+        // Graphique des campagnes
+    new Chart(document.getElementById('campaignDonationChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: campaignNames, // Ici, les labels sont toujours définis, mais ne seront pas affichés
+        datasets: [{
+            label: 'Nombre de dons par campagne',
+            data: donationCounts,
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Nombre de dons'
+                }
+            },
+            x: {
+                title: {
+                    display: false
+                },
+                ticks: {
+                    display: false, // Cela n'affichera pas les étiquettes de l'axe X
+                    font: {
+                        size: 10
+                    }
+                }
+            }
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                display: true,
+                position: 'top',
+            }
+        }
+    }
+});
+
+
+        // Graphique des donations par mois
+        new Chart(document.getElementById('monthlyDonationChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: monthlyDonationData.map(data => data.monthYear),
+                datasets: [{
+                    label: 'Nombre de dons par mois',
+                    data: monthlyDonationData.map(data => data.count),
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre de dons'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Mois'
+                        }
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        // Graphique des campagnes par mois de début
+        new Chart(document.getElementById('campaignsByStartMonthChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: campaignsByStartMonthData.map(data => data.monthYear),
+                datasets: [{
+                    label: 'Nombre de Campagnes par mois de début',
+                    data: campaignsByStartMonthData.map(data => data.count),
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Nombre de campagnes'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Mois'
+                        }
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

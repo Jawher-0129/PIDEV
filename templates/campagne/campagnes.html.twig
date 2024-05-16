@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Campagnes{% endblock %}
+
+{% block body %}
+    <!-- Campaigns Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Nos Campagnes</h5>
+                <h1 class="display-4">Explorer Nos Campagnes</h1>
+                {% if is_granted('ROLE_DIRECTEUR') %}
+                <a href="{{ path('add_campagne') }}">Ajouter Campagne</a>
+                {% endif %}
+            </div>
+
+            {% if campagnes is not empty %}
+                <div class="owl-carousel price-carousel position-relative" style="padding: 0 45px 45px 45px;">
+                    {% for campagne in campagnes %}
+                        <div class="bg-light rounded text-center">
+                            <div class="position-relative">
+                                {% if campagne.Image starts with 'C' %}
+                                {% set fileName = campagne.Image|split('\\')|last %}
+                               <img class="img-fluid rounded-top" src="{{ asset('uploads/' ~ fileName) }}" alt="Campaign Image" style="max-height: 170px;">  
+                               {% else %}
+                               <img class="img-fluid rounded-top" src="{{ asset('uploads/Images/' ~ campagne.Image) }}" alt="Campaign Image" style="max-height: 170px;">  
+                                {% endif %}
+                                <div class="position-absolute w-100 h-100 top-50 start-50 translate-middle rounded-top d-flex flex-column align-items-center justify-content-center" style="background: rgba(29, 42, 77, .8);">
+                                    <h3 class="text-primary">{{ campagne.Titre }}</h3>
+                                </div>
+                            </div>
+                            <div class="text-center py-4">
+                                <p>Participe Maintenant!</p>
+                                <p>
+                                    <small class="align-top fw-normal" style="font-size: 18px; line-height: 30px;">Commence: {{ campagne.DateDebut|date('Y-m-d') }}</small><br>
+                                    <small class="align-top fw-normal" style="font-size: 18px; line-height: 30px;">jusqu'au: {{ campagne.DateFin|date('Y-m-d') }}</small>
+                                </p>
+                                <a href="{{ path('show_campagne', {'id': campagne.id}) }}" class="btn btn-primary rounded-pill py-3 px-5 my-2">Details</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-primary">No campaigns found.</p>
+            {% endif %}
+        </div>
+    </div>
+    <!-- Campaigns End -->
+
+    <script>
+        // Add Owl Carousel initialization and options
+        $(document).ready(function(){
+            $(".price-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true, // Enable navigation arrows
+                navText: ["<span class='carousel-nav-left'></span>", "<span class='carousel-nav-right'></span>"], // Customize navigation arrow symbols
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+        });
+    </script>
+{% endblock %}

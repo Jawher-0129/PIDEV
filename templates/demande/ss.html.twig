@@ -1,0 +1,53 @@
+<form id="searchForm">
+    <label for="searchTerm">Search Term:</label>
+    <input type="text" id="searchTerm" name="searchTerm" />
+    <button type="submit">Search</button>
+</form>
+
+<h2>Search Results:</h2>
+<ul id="searchResultsList">
+    {% for result in searchResults %}
+        <li>{{ result.id_demande }} - {{ result.titre }}</li>
+    {% endfor %}
+</ul>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchTermInput = document.getElementById('searchTerm');
+        const searchForm = document.getElementById('searchForm');
+        const searchResultsList = document.getElementById('searchResultsList');
+        const allDemandsList = document.getElementById('allDemandsList');
+
+        searchTermInput.addEventListener('input', function () {
+            const searchTerm = searchTermInput.value;
+
+            fetch({{ path('search', {'searchTerm': ''}) }}${searchTerm})
+                .then(response => response.json())
+                .then(results => {
+                    searchResultsList.innerHTML = '';
+                    results.forEach(result => {
+                        const li = document.createElement('li');
+                        li.textContent = ${result.id_demande} - ${result.titre};
+                        searchResultsList.appendChild(li);
+                    });
+                });
+        });
+
+        // Prevent the form from submitting normally
+        searchForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+        });
+
+        // Initial load of all demands
+        fetch('{{path('search')}}')
+            .then(response => response.json())
+            .then(allDemands => {
+                allDemandsList.innerHTML = '';
+                allDemands.forEach(demand => {
+                    const li = document.createElement('li');
+                    li.textContent = ${demand.id_demande} - ${demand.titre};
+                    allDemandsList.appendChild(li);
+                });
+            });
+    });
+</script>

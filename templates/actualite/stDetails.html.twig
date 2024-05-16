@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Actualite{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Actualite</h1>
+
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <th scope="row" class="w-25">Titre</th>
+                    <td>{{ actualite.Titre }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Description</th>
+                    <td>{{ actualite.Description }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Type</th>
+                    <td>{{ actualite.TypePubCible }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Theme</th>
+                    <td>{{ actualite.Theme }}</td>
+                </tr>
+                {# Include additional fields as needed #}
+            </tbody>
+        </table>
+
+        <a href="{{ path('all_actualites') }}" class="btn btn-secondary">Back to list</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}All Evenements{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="text-center mx-auto mb-5" style="max-width: 500px; margin-top: 20px;">
+            <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Evenement</h5>
+            <h1 class="display-4">Nos Evenements</h1>
+        </div>
+
+        {# Add Search Form #}
+        <form action="{{ path('search_evenements') }}" method="GET" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        {% if not evenements %}
+            <p>No events found.</p>
+        {% else %}
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for key, evenement in evenements|batch(3) %}
+                        <div class="carousel-item {% if key == 0 %}active{% endif %}">
+                            <div class="row">
+                                {% for event in evenement %}
+                                    <div class="col-md-4">
+                                        <div class="card mx-2" style="width: 18rem;">
+                                            {% if event.Image starts with 'C' %}
+                                            {% set fileName = event.Image|split('\\')|last %}
+                                                <img src="{{ asset('uploads/' ~ fileName) }}" class="card-img-top" style="width: 250px; height: 200px; margin-left: 20px;" alt="Evenement Image">
+                                                {% else %}
+                                                <img src="{{ asset('uploads/Images/' ~ event.Image) }}" class="card-img-top" style="width: 250px; height: 200px; margin-left: 20px;" alt="Evenement Image">
+
+
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ event.Titre }}</h5>
+                                                <p class="card-text"><strong>Date:</strong> {{ event.Date|date('Y-m-d') }}</p>
+                                                <button type="button" class="btn btn-primary show-details-btn" data-bs-toggle="modal" data-bs-target="#eventModal{{ event.id }}">Show Details</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        {% endif %}
+    </div>
+
+    {% for event in evenements %}
+        <div class="modal fade" id="eventModal{{ event.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{{ event.Titre }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p><strong>Date:</strong> {{ event.Date|date('Y-m-d') }}</p>
+                        <p><strong>Duration:</strong> {{ event.Duree }}</p>
+                        <p><strong>Location:</strong> {{ event.Lieu }}</p>
+                        <p><strong>Objective:</strong> {{ event.Objectif }}</p>
+                        {% if event.Image starts with 'C' %}
+                        {% set fileName = event.Image|split('\\')|last %}
+                            <img src="{{ asset('uploads/' ~ fileName) }}" class="img-fluid" alt="Evenement Image">
+                        {% else %}
+                        <img src="{{ asset('uploads/Images' ~ event.Image) }}" class="img-fluid" alt="Evenement Image">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var showButtons = document.querySelectorAll('.show-details-btn');
+            showButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var targetModalId = this.getAttribute('data-bs-target');
+                    var modal = new bootstrap.Modal(document.querySelector(targetModalId));
+                    modal.show();
+                });
+            });
+        });
+    </script>
+{% endblock %}

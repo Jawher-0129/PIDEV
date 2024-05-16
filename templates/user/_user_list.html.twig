@@ -1,0 +1,82 @@
+ <style>
+    .action-link {
+    color: blue; /* Couleur du texte */
+    text-decoration: none; /* Supprime le soulignement des liens */
+    margin-right: 10px; /* Espacement entre les liens */
+}
+.action-linkk{
+
+   color: red; /* Couleur du texte */
+    text-decoration: none; /* Supprime le soulignement des liens */
+    margin-right: 10px; /* Espacement entre les liens */
+}
+}
+
+.action-link:hover {
+    color: red; /* Couleur du texte au survol */
+}
+
+        /* Style for the table */
+        table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        /* Style for table headers */
+        th {
+          background-color: #f2f2f2;
+          color: #333;
+          padding: 8px;
+          text-align: left;
+        }
+
+        /* Style for table rows */
+        tr:nth-child(even) {
+          background-color: #f2f2f2;
+        }
+
+        tr:hover {
+          background-color: #ddd;
+        }
+
+        /* Style for table cells */
+        td {
+          padding: 8px;
+        }
+
+        /* Style for action links */
+        a {
+          color: #007bff;
+          text-decoration: none;
+          margin-right: 10px;
+        }
+
+        a:hover {
+          text-decoration: underline;
+        }
+    </style>
+       <div id="search-results">
+        <!-- Les résultats de la recherche seront affichés ici -->
+        <table border="1">
+            <tr>
+                <th><a href="{{ path('list_user', {'orderBy': 'id'}) }}">ID</a></th>
+                <th>NOM</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Action</th>
+            </tr>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.Nom }}</td>
+                    <td>{{ user.Email }}</td>
+                    <td>{{ user.Adresse }}</td>
+                    <td>
+                        <a href="{{ path('deleteuser', {'id': user.id}) }}" class="action-linkk">Delete User</a>
+                        <br>
+                        <a href="{{ path('detail_user', {'id': user.id}) }}" class="action-link">Show Details</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>

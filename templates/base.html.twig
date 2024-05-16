@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> HealthSwift-{% block title %} Home {% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+
+    <link href="{{asset('img/logo_pi.jpg')}}" rel="icon">
+    <link rel="stylesheet" href="{{ asset('bundles/mercuryseriesflashy/css/flashy.css') }}">
+
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">  
+
+    <!-- Icon Font Stylesheet -->
+    {% block css%}
+    <link href="{{asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{asset('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css')}}" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{{asset('lib/owlcarousel/assets/owl.carousel.min.css')}}" rel="stylesheet">
+    <link href="{{asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}}" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid py-2 border-bottom d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-decoration-none text-body pe-3" href=""><i class="bi bi-telephone me-2"></i>+216 71658932</a>
+                        <span class="text-body">|</span>
+                        <a class="text-decoration-none text-body px-3" href=""><i class="bi bi-envelope me-2"></i>HealthSwift@gmail.com</a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center text-lg-end">
+                    <div class="d-inline-flex align-items-center">
+                        <a class="text-body px-2" href="">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a class="text-body px-2" href="">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a class="text-body px-2" href="">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a class="text-body px-2" href="">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a class="text-body ps-2" href="">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+   <!-- Navbar Start -->
+<div class="container-fluid sticky-top bg-white shadow-sm">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light py-3 py-lg-0">
+            <a href="{{ path('app_home') }}" class="navbar-brand">
+                <h1 class="m-0 text-uppercase text-primary" style="display: inline-block; vertical-align: middle;">
+            <img src="{{asset('img/logo_pi.jpg')}}" class="me-2" style="width: 50px; height: 50px; margin-right: 10px;">                    HealthSwift
+                </h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0">
+                    <a href="{{ path('app_home') }}" class="nav-item nav-link active">Home</a>
+                    <a href="#services" class="nav-item nav-link">Service</a>
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                   {% if app.user %}
+    <div class="dropdown nav-item">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bi bi-person-circle"></i> {{ app.user.nom }} {{ app.user.prenom }}
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="{{ path('updateuser') }}">Edit Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ path('app_logout') }}">Logout</a></li>
+        </ul>
+    </div>
+{% else %}
+    <a href="{{ path('app_login') }}" class="nav-item nav-link">Sign in</a>
+{% endif %}
+
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- Navbar End -->
+
+
+    <!-- Hero Start -->
+    {% block body %}
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5" style="border-color: rgba(256, 256, 256, .3) !important;">Welcome To HealthSwift</h5>
+                    <h1 class="display-1 text-white mb-md-4">Best Healthcare Solution In Your City</h1>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded" src="{{asset('img/about.jpg')}}" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="mb-4">
+                        <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">About Us</h5>
+                        <h1 class="display-4">Best Medical Care For Yourself and Your Family</h1>
+                    </div>
+                    <p>We are a non-profit organization dedicated to facilitating donations for those in need. At our core, we believe in the power of giving to create positive change in the world. Our mission is to connect donors with meaningful causes, providing support to communities and individuals facing various challenges. With transparency and integrity, we ensure that every donation makes a tangible difference in the lives of those we serve. Together, we strive to build a more compassionate and equitable society, one donation at a time</p>
+                    <div class="row g-3 pt-3">
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-user-md text-primary mb-3"></i>
+                                <h6 class="mb-0">Qualified<small class="d-block text-primary">Doctors</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-procedures text-primary mb-3"></i>
+                                <h6 class="mb-0">Emergency<small class="d-block text-primary">Services</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-microscope text-primary mb-3"></i>
+                                <h6 class="mb-0">Accurate<small class="d-block text-primary">Testing</small></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-3 col-6">
+                            <div class="bg-light text-center rounded-circle py-4">
+                                <i class="fa fa-3x fa-ambulance text-primary mb-3"></i>
+                                <h6 class="mb-0">Free<small class="d-block text-primary">Ambulance</small></h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+    
+
+    <!-- Services Start -->
+    <section class="services" id="services">
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Services</h5>
+                <h1 class="display-4">Excellent Services</h1>
+            </div>
+            <div class="row g-5">
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-procedures text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Donations Service </h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{path ('app_don_index')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-procedures text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Campagne Service </h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{path ('all_campagnes')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-stethoscope text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Request Service</h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{path('app_demande_index')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                  <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-stethoscope text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Appoinment Service</h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{path('app_rendez_vous_index')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-ambulance text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Hospital Service</h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{path('app_personnel_front')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-pills text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Actualite Service</h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{path('all_actualites')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-pills text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Evennement Service</h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{path('all_evenements')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                        <div class="service-icon mb-4">
+                            <i class="fa fa-2x fa-microscope text-white"></i>
+                        </div>
+                        <h4 class="mb-3">Materials Service</h4>
+                        <a class="btn btn-lg btn-primary rounded-pill" href="{{ path ('showCategorieFront')}}">
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                
+
+
+            </div>
+        </div>
+    </div>
+</section>
+    <!-- Services End -->
+
+
+  
+
+
+    <!-- Pricing Plan Start -->
+   
+    <!-- Pricing Plan End -->
+
+
+    <!-- Team Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Our personnelles</h5>
+            </div>
+            <div class="owl-carousel team-carousel position-relative">
+                <div class="team-item">
+                    <div class="row g-0 bg-light rounded overflow-hidden">
+                        <div class="col-12 col-sm-5 h-100">
+                            <img class="img-fluid h-100" src="{{asset('img/team-1.jpg')}}" style="object-fit: cover;">
+                        </div>
+                        <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                            <div class="mt-auto p-4">
+                                <h3>Dr Jawher Talbi</h3>
+                                <h6 class="fw-normal fst-italic text-primary mb-4">Cardiology Specialist</h6>
+                              
+                            </div>
+                            <div class="d-flex mt-auto border-top p-4">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-item">
+                    <div class="row g-0 bg-light rounded overflow-hidden">
+                        <div class="col-12 col-sm-5 h-100">
+                            <img class="img-fluid h-100" src="{{asset('img/team-2.jpg')}}" style="object-fit: cover;">
+                        </div>
+                        <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                            <div class="mt-auto p-4">
+                                <h3>Dr Firas Zighni</h3>
+                                <h6 class="fw-normal fst-italic text-primary mb-4">Surgery Specialist</h6>
+                
+                            </div>
+                            <div class="d-flex mt-auto border-top p-4">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-item">
+                    <div class="row g-0 bg-light rounded overflow-hidden">
+                        <div class="col-12 col-sm-5 h-100">
+                            <img class="img-fluid h-100" src="{{asset('img/team-3.jpg')}}" style="object-fit: cover;">
+                        </div>
+                        <div class="col-12 col-sm-7 h-100 d-flex flex-column">
+                            <div class="mt-auto p-4">
+                                <h3>Dr Tesnim Satouri</h3>
+                                <h6 class="fw-normal fst-italic text-primary mb-4">Geriatrics Specialist</h6>
+                            </div>
+                            <div class="d-flex mt-auto border-top p-4">
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-twitter"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-3" href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team End -->
+
+
+
+
+    <!-- Testimonial Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Testimonial</h5>
+                <h1 class="display-4">Patients Say About Our Services</h1>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="owl-carousel testimonial-carousel">
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid rounded-circle mx-auto" src="{{asset('img/testimonial-1.jpg')}}" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <hr class="w-25 mx-auto">
+                            <h3>Nouba Raouafi</h3>
+                            
+                        </div>
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid rounded-circle mx-auto" src="{{asset('img/testimonial-2.jpg')}}" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="fs-4 fw-normal">Having utilized the services offered by HealthSwift we can confidently say that they prioritize patient care above all else. Their donations service not only provided essential supplies but also demonstrated a genuine concern for our welfare. The request service was seamless, ensuring that our needs were met promptly and with compassion. Moreover, their hospital services were delivered with professionalism and expertise, instilling trust and confidence in their capabilities. Their health educational programs and materials were informative and empowering, equipping us with the knowledge to make informed decisions about our well-being. We wholeheartedly recommend HealthSwift  to anyone seeking reliable and compassionate healthcare service</p>
+                            <hr class="w-25 mx-auto">
+                            <h3>Ahmed Belhoula</h3>
+                            
+                        </div>
+                        <div class="testimonial-item text-center">
+                            <div class="position-relative mb-5">
+                                <img class="img-fluid rounded-circle mx-auto" src="{{asset('img/testimonial-3.jpg')}}" alt="">
+                                <div class="position-absolute top-100 start-50 translate-middle d-flex align-items-center justify-content-center bg-white rounded-circle" style="width: 60px; height: 60px;">
+                                    <i class="fa fa-quote-left fa-2x text-primary"></i>
+                                </div>
+                            </div>
+                            <p class="fs-4 fw-normal">Our experience with HealthSwift has been truly remarkable. Their dedication to patient care and community service is evident in every interaction. The donations service not only provided much-needed resources but also showcased their commitment to supporting those in need. The request service was efficient and accommodating, ensuring that every concern was addressed promptly and with care. Their hospital services were delivered with professionalism and compassion, leaving us feeling well-cared for and supported throughout our journey. Additionally, their health educational programs and materials were invaluable, empowering us to take charge of our health and well-being. We are grateful for the exemplary services provided by HealthSwift and would highly recommend them to anyone seeking exceptional healthcare.</p>
+                            <hr class="w-25 mx-auto">
+                            <h3>Takwa Saidi</h3>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+
+
+    <!-- Blog Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Blog Post</h5>
+                <h1 class="display-4">Our Latest Donations Posts</h1>
+            </div>
+            <div class="row g-5">
+
+
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <img class="img-fluid w-100" src="{{asset('img/Congo.jpg')}}" alt="">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Medicines Donation</a>
+                            
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="{{asset('img/user1.jpg')}}" width="25" height="25" alt="">
+                                <small>Jawher Talbi</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <img class="img-fluid w-100" src="{{asset('img/blooddonation.png')}}" alt="">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Blood Donation</a>
+                            
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="{{asset('img/user1.jpg')}}" width="25" height="25" alt="">
+                                <small>Jawher Talbi</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6">
+                    <div class="bg-light rounded overflow-hidden">
+                        <img class="img-fluid w-100" src="{{asset('img/kidney.jpg')}}" alt="">
+                        <div class="p-4">
+                            <a class="h3 d-block mb-3" href="">Kidney donation</a>
+        
+                        </div>
+                        <div class="d-flex justify-content-between border-top p-4">
+                            <div class="d-flex align-items-center">
+                                <img class="rounded-circle me-2" src="{{asset('img/user1.jpg')}}" width="25" height="25" alt="">
+                                <small>Jawher Talbi</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <small class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</small>
+                                <small class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+
+
+    {% endblock %}
+    
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Get In Touch</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt text-primary me-3"></i>Rue el ghazella Ariana</p>
+                    <p class="mb-2"><i class="fa fa-envelope text-primary me-3"></i>HealthSwift@gmail.com</p>
+                    <p class="mb-0"><i class="fa fa-phone-alt text-primary me-3"></i>+216 71658932</p>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Quick Links</h4>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>                    
+                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="d-inline-block text-primary text-uppercase border-bottom border-5 border-secondary mb-4">Popular Links</h4>
+                    <div class="d-flex flex-column justify-content-start">
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Home</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>About Us</a>
+                        <a class="text-light mb-2" href="#"><i class="fa fa-angle-right me-2"></i>Our Services</a>
+                        <a class="text-light" href="#"><i class="fa fa-angle-right me-2"></i>Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                   
+                    <h6 class="text-primary text-uppercase mt-4 mb-3">Follow Us</h6>
+                    <div class="d-flex">
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle me-2" href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-lg btn-primary btn-lg-square rounded-circle" href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid bg-dark text-light border-top border-secondary py-4">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-md-0">&copy; <a class="text-primary" href="#">HealthSwift</a>. All Rights Reserved.</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+
+    
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    {% block js %}
+    <script src="//code.jquery.com/jquery.js"></script>
+    <script src="{{asset('https://code.jquery.com/jquery-3.4.1.min.js')}}"></script>
+    <script src="{{asset('https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('lib/easing/easing.min.js')}}"></script>
+    <script src="{{asset('lib/waypoints/waypoints.min.js')}}"></script>
+    <script src="{{asset('lib/owlcarousel/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('lib/tempusdominus/js/moment.min.js')}}"></script>
+    <script src="{{asset('lib/tempusdominus/js/moment-timezone.min.js')}}"></script>
+    <script src="{{asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{{asset('js/main.js')}}"></script>
+
+    <script src="{{ asset('bundles/mercuryseriesflashy/js/flashy.js') }}"></script>
+          {{ include('@MercurySeriesFlashy/flashy.html.twig') }}
+
+    {% endblock %}
+</body>
+
+</html>

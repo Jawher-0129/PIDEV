@@ -1,0 +1,124 @@
+{% extends 'back.html.twig' %}
+
+{% block body %}
+<style>
+    .stats-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .chart-container {
+        flex: 0 0 calc(50% - 20px);
+        max-width: calc(50% - 20px);
+        box-sizing: border-box;
+        margin: 10px;
+    }
+    @media (max-width: 768px) {
+        .chart-container {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+    }
+</style>
+<div><h1>Statistics</h1></div>
+<div class="stats-container">
+    <div class="chart-container">
+        <canvas id="totalEventsChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="totalActualitesChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="eventsByDateChart"></canvas>
+    </div>
+    <div class="chart-container">
+        <canvas id="actualitesByThemeChart"></canvas>
+    </div>
+</div>
+
+{% block javascript %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var totalEvents = {{ statistics.total_events }};
+        var totalActualites = {{ statistics.total_actualites }};
+        var eventsByDateData = {{ statistics.events_by_date|json_encode()|raw }};
+        var actualitesByThemeData = {{ statistics.actualites_by_theme|json_encode()|raw }};
+
+        // Chart for Total Events
+        new Chart(document.getElementById('totalEventsChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Total Events', 'Remaining Events'],
+                datasets: [{
+                    data: [totalEvents, 100 - totalEvents],
+                    backgroundColor: ['#36A2EB', '#FFCE56']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Chart for Total Actualites
+        new Chart(document.getElementById('totalActualitesChart').getContext('2d'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Total Actualites', 'Remaining Actualites'],
+                datasets: [{
+                    data: [totalActualites, 100 - totalActualites],
+                    backgroundColor: ['#FF6384', '#36A2EB']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        // Chart for Events by Date
+        new Chart(document.getElementById('eventsByDateChart').getContext('2d'), {
+            type: 'bar',
+            data: {
+                labels: Object.keys(eventsByDateData),
+                datasets: [{
+                    label: 'Events Count',
+                    data: Object.values(eventsByDateData),
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+
+        // Chart for Actualites by Theme
+        new Chart(document.getElementById('actualitesByThemeChart').getContext('2d'), {
+            type: 'pie',
+            data: {
+                labels: Object.keys(actualitesByThemeData),
+                datasets: [{
+                    data: Object.values(actualitesByThemeData),
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    });
+</script>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% if demande.Statut == "EN COUR DE TRAITEMENT"%} 
+<form method="post" action="{{ path('app_demande_delete', {'id_demande': demande.id_demande}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ demande.id_demande) }}">
+    <button type="submit" class="btn btn-danger">
+        <i class="fas fa-trash-alt"></i> Supprimer
+    </button>
+</form>
+ {% endif %}
+ 

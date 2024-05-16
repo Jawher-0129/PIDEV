@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Index des Dons{% endblock %}
+
+{% block body %}
+<section class="services" id="services">
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Services</h5>
+                <h1 class="display-4">Dons</h1>
+                {% if is_granted('ROLE_DONATEUR') %}
+                 <a href="{{ path('app_don_new') }}" >Ajouter un Don</a>
+                 {% endif %}
+              <br> <br>
+              <!-- Extended Form with Search Bar -->
+   <!-- Extended Form with Search Bar -->
+<div class="text-center mx-auto mb-5" style="max-width: 600px;">
+    <form method="get" action="{{ path('app_don_index') }}" class="input-group my-3 align-items-center">
+        <div class="me-2 flex-grow-1">
+            <select class="form-select border-primary" name="typeDon" aria-label="Type de don" onchange="this.form.submit()">
+                <option value="">Sélectionnez un type de don</option>
+                {% for type in typesDons %}
+                    <option value="{{ type }}" {{ type == selectedTypeDon ? 'selected' : '' }}>{{ type }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="text" class="form-control border-primary" name="searchTerm" placeholder="Mot-clé" aria-label="Mot-clé">
+        <button class="btn btn-dark border-0 ms-2" type="submit">
+            <i class="fa fa-search"></i>
+        </button>
+    </form>
+</div>
+
+
+            </div>
+
+            <!-- Affichage des dons -->
+            <div class="row g-5" id="donationsContainer">
+                {% for don in dons %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-item bg-light rounded d-flex flex-column align-items-center justify-content-center text-center">
+                            <div class="service-icon mb-4">
+                                <i class="fa fa-2x fa-user-md text-white"></i>
+                            </div>
+                            <h4 class="mb-3">Don #{{ don.id }}</h4>
+                            <p class="m-0">
+                                <strong>Type:</strong> {{ don.Type }}<br>
+                                <strong>Date Remise:</strong> {{ don.DateRemise ? don.DateRemise|date('Y-m-d') : 'Non spécifiée' }}<br>
+                                <strong>Campagne:</strong> {{ don.campagne ? don.campagne.Titre : 'Non associé' }}<br>
+                            </p>
+                            <div class="btn-group mt-3">
+                                <a href="{{ path('app_don_show', {'id': don.id}) }}" class="btn btn-info">Voir</a>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <p class="text-center">Aucun don trouvé.</p>
+                    </div>
+                {% endfor %}
+            </div>
+
+         <!-- Load More Button -->
+            <div class="text-center mt-4">
+                <button id="loadMore" class="btn btn-primary">Load More</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById('loadMore').addEventListener('click', function() {
+    var offset = document.querySelectorAll('.service-item').length;
+    fetch(`{{ path('app_don_index') }}?offset=${offset}`)
+        .then(response => response.text())
+        .then(html => {
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(html, 'text/html');
+            var newDons = doc.querySelector('#donationsContainer').innerHTML;
+            document.getElementById('donationsContainer').innerHTML += newDons;
+            if (doc.querySelector('.service-item') === null) {
+                // Hide the Load More button if no more donations are available
+                document.getElementById('loadMore').style.display = 'none';
+            }
+        }).catch(error => console.error('Error loading more donations:', error));
+});
+</script>
+
+{% endblock %}

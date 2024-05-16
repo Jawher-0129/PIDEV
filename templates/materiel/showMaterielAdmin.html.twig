@@ -1,0 +1,101 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} ShowMateriel {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <!-- Incluez Font Awesome ici -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+    <!-- Flash Messages Start -->
+    <div class="container mt-3">
+        {% for flashType, flashMessages in app.flashes %}
+            {% for flashMessage in flashMessages %}
+                <div class="alert alert-{{ flashType }} alert-dismissible fade show" role="alert">
+                    {% if flashType == 'success' %}
+                        <i class="fas fa-check-circle"></i>
+                    {% elseif flashType == 'error' %}
+                        <i class="fas fa-times-circle"></i>
+                    {% endif %}
+                    {{ flashMessage }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <!-- Flash Messages End -->
+
+    <!-- Ajout des boutons pour trier -->
+    <div class="container my-4 d-flex justify-content-between align-items-center">
+        <div>
+            <!-- Boutons à gauche -->
+            <a href="{{ path('addMateriel') }}" class="btn btn-primary">
+                <i class="fas fa-plus-circle me-2"></i> Add Material
+            </a>
+            <!-- Bouton pour télécharger le PDF -->
+            <a href="{{ path('exportpdf') }}" class="btn btn-secondary ms-2">
+                <i class="fas fa-file-download me-2"></i> Download PDF
+            </a>
+        </div>
+        <div>
+            <!-- Boutons à droite -->
+            <a href="{{ path('TriCroissant') }}" class="btn btn-light">
+                <i class="fas fa-sort-amount-up me-1"></i> Tri Croissant
+            </a>
+            <a href="{{ path('TriDecroissant') }}" class="btn btn-light ms-2">
+                <i class="fas fa-sort-amount-down me-1"></i> Tri Décroissant
+            </a>
+            <a href="{{ path('stat_materiel') }}" class="btn btn-primary btn-lg rounded-pill shadow-sm">
+                <span class="me-2">Statistiques</span>
+                <i class="fas fa-chart-line"></i>
+            </a>
+        </div>
+    </div>
+    
+    <!-- Blog Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 500px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">WELCOME</h5>
+                <h1 class="display-4">List of materials</h1>
+            </div>
+
+            <form method="GET" action="{{ path('searchMateriel') }}">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Rechercher" aria-label="Search" name="query">
+                            <button class="btn btn-primary" type="submit">Rechercher</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row g-5">
+                {% for m in materiel %}
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="bg-light rounded overflow-hidden">
+                            <img class="img-fluid w-100" src="{{ asset('uploads/' ~ m.image) }}" alt="{{ m.Libelle }}">
+                            <div class="p-4">
+                                <h3 class="d-block mb-3">{{ m.Libelle }}</h3>
+                                <p class="mb-3">{{ m.description }}</p>
+                                <ul class="list-unstyled">
+                                    <li><strong>Category:</strong> {{ m.idCategorie.libelleCategorie }}</li>
+                                    <li><strong>Availability:</strong> {% if m.disponibilite == 1 %}<span class="text-success">Available</span>{% else %}<span class="text-danger">Not Available</span>{% endif %}</li>
+                                    <li><strong>Price:</strong> {{ m.prix }} DT</li>
+                                </ul>
+                                <div class="d-flex justify-content-between mt-4">
+                                    <a href="{{ path('editMateriel', {'id': m.idMateriel, 'imageUrl': m.image}) }}" class="btn btn-primary">Edit</a>
+                                    <a href="{{ path('deleteMateriel', {'id': m.idMateriel}) }}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- Blog End -->
+{% endblock %}

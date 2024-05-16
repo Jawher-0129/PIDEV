@@ -1,0 +1,13 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}New Don{% endblock %}
+
+{% block body %}
+    <div style="text-align: center;">
+    <h1>Ajouter Don</h1>
+</div>
+
+    {{ include('don/back_office/_form_back.html.twig') }}
+
+    <a href="{{ path('app_don_index_back') }}">Retour</a>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} ShowCategorie {% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <!-- Affichage des messages flash -->
+        {% for flashType, flashMessages in app.flashes %}
+            {% for flashMessage in flashMessages %}
+                <div class="alert alert-{{ flashType }} alert-dismissible fade show" role="alert">
+                    <!-- Ajoutez une icône à côté du message -->
+                    {% if flashType == 'success' %}
+                        <i class="fas fa-check-circle"></i>
+                    {% elseif flashType == 'error' %}
+                        <i class="fas fa-times-circle"></i>
+                    {% endif %}
+                    {{ flashMessage }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <div class="d-flex justify-content-end mb-3">
+            <a href="{{ path('addCategorie') }}" class="btn btn-success"><i class="fas fa-plus-circle me-2"></i>Ajouter une catégorie</a>
+        </div>
+
+        <h1 class="text-center mb-4">Liste des catégories</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Libellé</th>
+                        <th scope="col" colspan="2" class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in categorie %}
+                        <tr>
+                            <td>{{ c.IdCategorie }}</td>
+                            <td>{{ c.LibelleCategorie }}</td>
+                            <td class="text-center"><a href="{{ path('deleteCategorie',{'id': c.IdCategorie}) }}" class="btn btn-danger">Supprimer</a></td>
+                            <td class="text-center"><a href="{{ path('editCategorie',{'id': c.IdCategorie}) }}" class="btn btn-primary">Modifier</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

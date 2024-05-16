@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Dons pour la campagne {% if dons|length > 0 %}{{ dons[0].campagne.Titre }}{% endif %}</title>
+    <style>
+        body {
+            font-family: 'Open Sans', Arial, sans-serif;
+            color: #333;
+            background-color: #e6e6e6; /* Light grey background, neutral compared to the logo */
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            background-color:#4682b4; /* Red color matching the logo */
+            color: #fff;
+        }
+        .logo {
+            width: 100px;
+            height: auto;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #fff;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #4682b4; /* Blue color matching the logo */
+            color: #ffffff;
+        }
+        tr:nth-child(even) {
+            background-color: #f8d7da; /* Light red for even rows */
+        }
+        tr:nth-child(odd) {
+            background-color: #d1e0e5; /* Light blue for odd rows */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://i.postimg.cc/ZnF1gFvN/image.png" alt="Logo" class="logo">
+        <h1>Liste des Dons pour la campagne {% if dons|length > 0 %}{{ dons[0].campagne.Titre }}{% else %}Indéfinie{% endif %}</h1> 
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Date de Remise</th>
+                <th>Montant</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for don in dons %}
+                <tr>
+                    <td>{{ don.id }}</td>
+                    <td>{{ don.type }}</td>
+                    <td>{{ don.dateRemise ? don.dateRemise|date('Y-m-d') : '' }}</td>
+                    <td>{{ don.montant }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

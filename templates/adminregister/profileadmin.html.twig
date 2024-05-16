@@ -1,0 +1,128 @@
+{% extends 'back.html.twig' %}
+{% block body %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <!-- begin::details View -->
+    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" style="margin-top: 120px; margin-left: 50px; margin-right: 50px">
+        <!-- begin::Card header -->
+        <div class="card-header cursor-pointer">
+            <!-- begin::Card title -->
+            <div class="card-title m-0">
+                <h3 class="fw-bold m-0">Profile Details</h3>
+            </div>
+            <!-- end::Card title -->
+            <!-- begin::Action -->
+<a href="#" class="btn btn-sm btn-primary align-self-center" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</a>
+            <!-- end::Action -->
+        </div>
+        <!-- begin::Card header -->
+        <!-- begin::Card body -->
+        <div class="card-body p-9">
+            <!-- begin::Row -->
+            <div class="row mb-7">
+                <!-- begin::Label -->
+                <label class="col-lg-4 fw-semibold text-muted">Full Name</label>
+                <!-- end::Label -->
+                <!-- begin::Col -->
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">{{ user.Nom ~ ' ' ~ user.Prenom }}</span>
+                </div>
+                <!-- end::Col -->
+            </div>
+            <!-- end::Row -->
+            <!-- begin::Input group -->
+            <div class="row mb-7">
+                <!-- begin::Label -->
+                <label class="col-lg-4 fw-semibold text-muted">Adresse</label>
+                <!-- end::Label -->
+                <!-- begin::Col -->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-semibold text-gray-800 fs-6">{{ user.Adresse }}</span>
+                </div>
+                <!-- end::Col -->
+            </div>
+             <div class="row mb-7">
+                <!-- begin::Label -->
+                <label class="col-lg-4 fw-semibold text-muted">Telephone</label>
+                <!-- end::Label -->
+                <!-- begin::Col -->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-semibold text-gray-800 fs-6">{{ user.Telephone }}</span>
+                </div>
+                <!-- end::Col -->
+            </div>
+            <!-- end::Input group -->
+
+            <!-- end::Input group -->
+            <!-- begin::Input group -->
+            <div class="row mb-7">
+                <!-- begin::Label -->
+                <label class="col-lg-4 fw-semibold text-muted">Email</label>
+                <!-- end::Label -->
+                <!-- begin::Col -->
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">{{ user.Email }}</span>
+                </div>
+                <!-- end::Col -->
+            </div>
+            <!-- end::Input group -->
+        </div>
+        <!-- end::Card body -->
+    </div>
+    <!-- end::details View -->
+
+    {% block edit %}
+        <!-- Edit Profile Modal -->
+        <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        {{ form_start(form, {'attr': {'method': 'post', 'action': path('updateadmin', {'id': user.id}), 'novalidate': 'novalidate', 'id': 'yourFormId'}}) }}
+
+                        <div class="mb-3">
+                            {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+                          <div class="mb-3">
+                            {{ form_row(form.telephone, {'attr': {'class': 'form-control', 'placeholder': 'Telephone'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Password'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.update, {'attr': {'class': 'btn btn-primary'}}) }}
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+{% endblock %}
+

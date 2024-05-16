@@ -1,0 +1,58 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Form{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/button.css') }}">
+{% endblock %}
+
+{% block body %}
+<br>
+<input type="checkbox" id="darkmode-toggle"/>
+<label for="darkmode-toggle">
+    <!-- SVG icons and other content for the button -->
+</label>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card">
+                <div class="card-header">
+                    <h1 class="card-title">Ajouter un événement</h1>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        {{ form_row(form.Titre, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.Titre) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.Duree, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.Duree) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.Lieu, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.Lieu) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.Objectif, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.Objectif) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.Image, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.Image) }}
+                    </div>
+                    <div class="form-group">
+                        {{ form_row(form.actualite, {'attr': {'class': 'form-check-input'}}) }}
+                        {{ form_errors(form.actualite) }}
+                    </div>
+                    
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

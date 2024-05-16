@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande{% endblock %}
+
+{% block body %}
+<div class="container mt-3">
+    <a href="{{ path('app_demande_index') }}" class="btn btn-primary"><i class="fas fa-arrow-left"></i> Retour à la page des demandes</a>
+    <h1 class="mt-3">Détail de la demande</h1>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>Titre</th>
+                        <td>{{ demande.titre}}</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td>{{ demande.Date ? demande.Date|date('Y-m-d H:i:s') : '' }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ demande.Description }}</td>
+                    </tr>
+                    <tr>
+                        <th>Statut</th>
+                        <td>{{ demande.Statut }}</td>
+                    </tr>
+                    <tr>
+                        <th>Don</th>
+                        <td>{{ demande.don.type }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            {{ include('demande/_delete_form.html.twig') }}
+
+          
+
+            <a href="{{ path('app_demande_edit', {'id_demande': demande.id_demande}) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Modifier</a>
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

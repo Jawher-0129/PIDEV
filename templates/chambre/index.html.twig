@@ -1,0 +1,80 @@
+{# templates/chambre/index.html.twig #}
+
+{% extends 'back.html.twig' %}
+
+{% block title %}Chambre index{% endblock %}
+
+{% block body %}
+<h1>Chambre index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Numero</th>
+            <th>Disponibilite</th>
+            <th>Nombre_litsTotal</th>
+            <th>Nmbr_litsDisponible</th>
+            <th>Personnel</th>
+            <th>actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for chambre in chambres %}
+        <tr>
+            <td>{{ chambre.Numero }}</td>
+            <td>{{ chambre.Disponibilite ? 'OUI' : 'NON' }}</td>
+            <td>{{ chambre.NombreLitsTotal }}</td>
+            <td>{{ chambre.NmbrLitsDisponible }}</td>
+            <td>{{ chambre.Personnel }}</td>
+            <td>
+                <a href="{{ path('app_chambre_show', {'Numero': chambre.Numero}) }}">Voir</a>
+                <a href="{{ path('app_chambre_edit', {'Numero': chambre.Numero}) }}">Modifier</a>
+                <a href="{{ path('exportpdfChambre', {'Numero': chambre.Numero}) }}"><button>Télécharger</button></a>
+
+            </td>
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="5">no records found</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{# Pagination #}
+<div class="pagination">
+    {% if currentPage > 1 %}
+        <a href="{{ path('app_chambre_index', {'page': currentPage - 1}) }}">Précédent</a>
+    {% endif %}
+    
+    {% for i in 1..totalPages %}
+        <a href="{{ path('app_chambre_index', {'page': i}) }}"
+           class="{{ i == currentPage ? 'active' : '' }}">{{ i }}</a>
+    {% endfor %}
+    
+    {% if currentPage < totalPages %}
+        <a href="{{ path('app_chambre_index', {'page': currentPage + 1}) }}">Suivant</a>
+    {% endif %}
+</div>
+<style>
+.pagination span, .pagination a {
+    padding: 8px 16px;
+    margin: 0 4px;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: black;
+}
+
+.pagination span {
+    background-color: #007bff;
+    color: white;
+    border: 1px solid #007bff;
+}
+.pagination a:hover {
+    background-color: #ddd;
+}
+</style>
+
+
+<a href="{{ path('app_chambre_new') }}">Ajouter</a>
+{% endblock %}

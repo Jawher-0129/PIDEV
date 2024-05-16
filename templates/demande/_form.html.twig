@@ -1,0 +1,91 @@
+{# 
+<div class="container-fluid bg-primary my-5 py-5">
+        <div class="container py-5">
+<div class="col-lg-6">
+                    <div class="bg-white text-center rounded p-5">
+                        <h1 class="mb-4">Book An Appointment</h1>
+
+
+{{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+ <div class="row g-3">
+
+<div class="col-12 col-sm-6">
+ {{ form_label(form.titre, "Titre de demande")  }}
+ {{ form_widget(form.titre,{'attr': {'class':'form-control bg-light border-0', 'style':'height: 55px;'}}) }}
+</div>
+ <div class="col-12 col-sm-6">
+ {{ form_label(form.Description, "Description")  }}
+ {{ form_widget(form.Description,{'attr': {'class':'form-control bg-light border-0', 'style':'height: 55px;'}}) }}
+</div>
+<div class="col-12 col-sm-6">
+{{ form_label(form.Statut, "Status")  }}
+    {{ form_widget(form.Statut, {'attr': {'class':'form-control bg-light border-0', 'style':'height: 55px;'}}) }}
+</div>
+<div class="col-12 col-sm-6">
+{{ form_label(form.don, "Don")  }}
+    {{ form_widget(form.don,{'attr': {'class':'form-select bg-light border-0', 'style':'height: 55px;'}}) }}
+</div>
+<div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3">  {{ button_label|default('Passer la demande') }}</button>
+                                   
+                                </div>
+   
+ 
+     </div>
+{{ form_end(form) }}
+
+ </div>
+                </div>
+                </div>
+                </div>
+ #}
+
+
+<div class="container-fluid pt-5">
+    <div class="container">
+     
+         <div class="row justify-content-center position-relative" style="margin-top: -200px; z-index: 1;">
+                <div class="col-lg-8">
+                    <div class="bg-white rounded p-5 m-5 mb-0">
+                             {{ form_start(form,{'attr':{'novalidate':'novalidate'}}) }}
+                                  <div class="row g-3">
+                                           <div class="col-12">
+                                               {{ form_label(form.titre, "Titre de demande")  }}
+                                               {{ form_widget(form.titre,{'attr': {'class':'form-control bg-light border-0', 'style':'height: 55px;'}}) }}
+                                                {% if form_errors(form.titre) is not empty %}
+                                            <div class="alert alert-danger">
+                                                 {{ form_errors(form.titre) }}
+                                            </div>
+                                            {% endif %}
+                                             </div>
+                                               <div class="col-12">
+                                               {{ form_label(form.Description, "Description")  }}
+                                               {{ form_widget(form.Description)}}
+                                                {% if form_errors(form.Description) is not empty %}
+                                            <div class="alert alert-danger">
+                                                 {{ form_errors(form.Description) }}
+                                                 <br>
+                                            </div>
+                                            {% endif %}
+                                              </div>
+                                               <div class="col-12">
+                                              {{ form_label(form.Statut, "Status")  }}
+                                                  {{ form_widget(form.Statut, {'attr': {'class':'form-control bg-light border-0', 'style':'height: 55px;'}}) }}
+                                              </div>
+                                             {#   <div class="col-12">
+                                              {{ form_label(form.don, "Don")  }}
+                                                  {{ form_widget(form.don,{'attr': {'class':'form-select bg-light border-0', 'style':'height: 55px;'}}) }}
+                                              </div> #}
+
+                                    <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3">  {{ button_label|default('Passer la demande') }}</button>
+                                   
+                                </div>
+                                   </div>
+                             {{ form_end(form) }}
+                   </div>
+             </div>
+        </div>
+    </div>
+</div>
+                       

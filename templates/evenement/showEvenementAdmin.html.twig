@@ -1,0 +1,61 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} Liste des Evenements {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {# Include Bootstrap CSS #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mt-4">Liste des Evenements</h1>
+        
+        <div class="row justify-content-end mb-3">
+            <div class="col-auto">
+                <a href="{{ path('export_evenements') }}" class="btn btn-success">Export to Excel</a>
+            </div>
+        </div>
+        
+        <div class="mb-3">
+            <strong>Sort by Date:</strong>
+            <a href="{{ path('sort_evenements', {'sort_by': 'date_asc'}) }}" class="btn btn-primary">Ascending</a>
+            <a href="{{ path('sort_evenements', {'sort_by': 'date_desc'}) }}" class="btn btn-primary">Descending</a>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID Evenement</th>
+                        <th>Titre</th>
+                        <th>Date</th>
+                        <th>Durée</th>
+                        <th>Lieu</th>
+                        <th>Objectif</th>  
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for evenement in evenements %}
+                        <tr>
+                            <td>{{ evenement.id }}</td>
+                            <td>{{ evenement.titre }}</td>
+                            <td>{{ evenement.date|date('Y-m-d') }}</td>
+                            <td>{{ evenement.duree }}</td>
+                            <td>{{ evenement.lieu }}</td>
+                            <td>{{ evenement.objectif }}</td> 
+                            <td><a href="{{ path('delete_evenementba', {'id': evenement.id}) }}" class="btn btn-danger">Delete</a></td>
+                            <td><a href="{{ path('edit_evenement', {'id': evenement.id}) }}" class="btn btn-primary">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="text-center">
+            <a href="{{ path('add_evenementback') }}" class="btn btn-secondary">Ajout</a>
+        </div>
+    </div>
+{% endblock %}

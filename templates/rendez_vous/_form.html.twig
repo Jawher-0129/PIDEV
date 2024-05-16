@@ -1,0 +1,44 @@
+
+   <div class="col-lg-5 col-md-7 bg-white">
+   <div class="p-3">
+   {{ form_start(form,{'attr': {'novalidate': 'novalidate','class':'class="mt-4"'}}) }}
+    <div class="row">
+    <div class="col-lg-12">
+                                    <div class="form-group">
+                                      
+                                    
+    {{ form_widget(form.Date,{'attr': {'class': 'form-control'}}) }}
+         {% if form_errors(form.Date) is not empty %}
+                                            <div class="alert alert-danger">
+                                                  {{ form_errors(form.Date) }}
+                                            </div>
+                                            {% endif %}
+</div>
+                                </div>
+ <div class="col-lg-12">
+                                    <div class="form-group">
+                                       {{ form_widget(form.Lieu, {'attr': {'class':'form-control', 'placeholder':'Lieu de rendez-vous'}}) }}
+                                        {% if form_errors(form.Lieu) is not empty %}
+                                            <div class="alert alert-danger">
+                                                  {{ form_errors(form.Lieu) }}
+                                            </div>
+                                            {% endif %}
+                                     </div>
+</div>
+ <div class="col-lg-12">
+                                    <div class="form-group">
+ {{ form_widget(form.Objective, {'attr': {'class':'form-control', 'placeholder':'Objectif de rendez-vous'}}) }}
+                           {% if form_errors(form.Lieu) is not empty %}
+                                            <div class="alert alert-danger">
+                                                  {{ form_errors(form.Objective) }}
+                                            </div>
+                                            {% endif %}
+                            </div>
+                                </div>
+                            <button class="btn btn-block btn-dark">{{ button_label|default('Affecter le rendez-vous') }}</button>
+                    </div>
+                     </div>
+                    {{ form_end(form) }} 
+                    </div>
+                     </div>
+                    

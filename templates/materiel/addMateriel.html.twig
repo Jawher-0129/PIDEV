@@ -1,0 +1,65 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} AddMateriel {% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <div class="bg-light text-center rounded p-5">
+                    <h1 class="mb-4">Add Materiel</h1>
+                    {{ form_start(f, {'attr': {'novalidate': 'novalidate'}}) }}
+                    <div class="row g-3 align-items-center">
+                       
+                        <div class="col-6">
+                            <div class="mb-3">
+                                {{ form_label(f.idCategorie, "Id Category") }}
+                                {{ form_widget(f.idCategorie, {'attr': {'class': 'form-select', 'style': 'height: 55px;'}}) }}
+                                <div style="color: red;">{{ form_errors(f.idCategorie) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                {{ form_label(f.Libelle, "Libelle") }}
+                                {{ form_widget(f.Libelle, {'attr': {'class': 'form-control', 'style': 'height: 55px;'}}) }}
+                                <div style="color: red;">{{ form_errors(f.Libelle) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                {{ form_label(f.Description, "Description") }}
+                                {{ form_widget(f.Description, {'attr': {'class': 'form-control', 'style': 'height: 55px;'}}) }}
+                                <div style="color: red;">{{ form_errors(f.Description) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                {{ form_label(f.Prix, "Price") }}
+                                {{ form_widget(f.Prix, {'attr': {'class': 'form-control', 'style': 'height: 55px;'}}) }}
+                                <div style="color: red;">{{ form_errors(f.Prix) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                {{ form_label(f.Image, "Image") }}
+                                {{ form_widget(f.Image) }}
+                                <div style="color: red;">{{ form_errors(f.Image) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mb-3">
+                                {{ form_label(f.Disponibilite) }}
+                                {{ form_widget(f.Disponibilite) }}
+                                <div style="color: red;">{{ form_errors(f.Disponibilite) }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary w-100 py-3" type="submit">Add Materiel</button>
+                        </div>
+                    </div>
+                    {{ form_end(f) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

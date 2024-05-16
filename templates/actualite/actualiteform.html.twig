@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}actualite{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title">Ajouter une actualité</h1>
+        </div>
+        <div class="card-body">
+            {{ form_start(formA, {'attr': {'class': 'form-horizontal'}}) }}
+            <div class="form-group">
+                {{ form_row(formA.Titre, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(formA.Titre) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(formA.Description, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(formA.Description) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(formA.Type_pub_cible, 'Type de public cible', {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_errors(formA.Type_pub_cible) }}
+                {{ form_widget(formA.Type_pub_cible, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(formA.Theme, 'Thème', {'label_attr': {'class': 'control-label'}}) }}
+                {{ form_errors(formA.Theme) }}
+                {{ form_widget(formA.Theme, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_row(formA.Evenement, {'attr': {'class': 'form-control'}}) }}
+                {{ form_errors(formA.Evenement) }}
+            </div>
+           
+            {{ form_end(formA) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

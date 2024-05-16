@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter un don {% endblock %}
+
+{% block body %}
+    <h1 class="text-center">Ajouter un Don</h1>
+
+    {{ include('don/front_office/_form.html.twig') }}
+
+    <a href="{{ path('app_don_index') }}">Retour</a>
+{% endblock %}

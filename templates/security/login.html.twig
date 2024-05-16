@@ -1,0 +1,141 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <!doctype html>
+    <html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Modernize Free</title>
+        <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+        <link rel="stylesheet" href="../assets/css/styles.min.css" />
+     <style>
+   /* Custom CSS for the div containing "Create an account" link */
+    .create-account {
+        margin-top: 20px; /* Add margin to separate it from other elements */
+    }
+
+    /* Custom CSS for the div containing "Se connecter avec Google" link */
+    .google-login {
+        margin-top: 20px; /* Add margin to separate it from other elements */
+    }
+
+      .card {
+        position: absolute;
+        left: 100px; /* Adjust the left position as needed */
+        top: 50px; /* Adjust the top position as needed */
+        width: 460px; /* Adjust the width as needed */
+        transition: transform 0.3s ease;
+        margin-top: -50px; /* Déplacement de la carte vers le haut de 150 pixels */
+    }
+  .big-image {
+        max-width: 100%;
+        height: auto;
+        width: 1000px; /* Adjust the width as needed */
+        max-height: 2000px; /* Adjust the maximum height as needed */
+        margin-top: -200px; /* Déplacement de la carte vers le haut de 150 pixels */
+        right: 200px; /* Adjust the left position as needed */
+
+
+    }
+    .card:hover {
+        transform: translateX(-10px); /* Translation de 10 pixels vers la gauche */
+    }
+    </style>
+
+
+    </head>
+
+    <body>
+        <!--  Body Wrapper -->
+     <div class="page-wrapper shadow" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="row justify-content-center w-100">
+                <div class="col-md-8 col-lg-6 col-xxl-3">
+                    <div class="card mb-0">
+                        <div class="card-body">
+                            <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                                <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
+                            </a>
+                            <div style="display: flex; justify-content: center; align-items: center;">
+                                <img src="{{ asset('img/logo_pi.jpg') }}" class="me-2" style="width: 100px; height: 100px; margin-right: 10px;">
+                            </div>
+                            <form id="signin-form" action="{{ path('app_login') }}" method="post">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" autocomplete="email" required autofocus>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" name="password" autocomplete="current-password" required>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked" checked>
+                                        <label class="form-check-label text-dark" for="flexCheckChecked">
+                                            Remember this Device
+                                        </label>
+                                    </div>
+                                <a href="{{path('mdpoublie')}}" class="link-primary">Forgot Password ?</a>
+                                </div>
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                                <button class="btn btn-primary w-100" type="submit">Sign in</button>
+                           <div class="text-center text-gray-500 fw-semibold fs-6 mt-3">
+                                        Don't have an Account Yet ?
+                                        <a href="{{ path('user_register') }}" class="btn btn-primary w30">Sign Up</a>
+                                    </div>
+
+<div class="google-login d-flex align-items-center justify-content-center">
+    <a class="text-primary fw-bold ms-2" href="{{ path('connect_google') }}">Login with Google</a>
+</div>
+
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="d-flex flex-column flex-lg-row-fluid">
+                        <!--begin::Content-->
+                        <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
+                            <!--begin::Image-->
+                            <img class="big-image" src="{{ asset('assets/images/alert/man-key-near-computer-account-260nw-1499141258.png')}}" alt="" />
+                        </div>
+                        <!--end::Content-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+        <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+        <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+        {% block javascripts %}
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    var signInForm = document.getElementById('signin-form');
+                    if (signInForm) {
+                        signInForm.addEventListener('submit', function(event) {
+                            event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+
+                            // Vous pouvez ajouter ici votre propre logique pour traiter le formulaire, par exemple, envoyer les données via AJAX
+
+                            // Pour l'exemple, nous laisserons simplement le formulaire se soumettre normalement
+                            signInForm.submit();
+                        });
+                    }
+                });
+            </script>
+        {% endblock %}
+    </body>
+
+    </html>
+{% endblock %}

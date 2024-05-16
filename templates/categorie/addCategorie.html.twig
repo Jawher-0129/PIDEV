@@ -1,0 +1,29 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} AddCategorie {% endblock %}
+
+{% block body %}
+    {% if app.flashes('success') is not empty %}
+        <div class="alert alert-success">
+            {% for message in app.flashes('success') %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% if app.flashes('error') is not empty %}
+        <div class="alert alert-danger">
+            {% for message in app.flashes('error') %}
+                {{ message }}
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {{ form_start(f, {'attr': {'novalidate': 'novalidate'}}) }}
+    <div class="input-group">
+        {{ form_widget(f.LibelleCategorie, {'attr': {'class': 'form-select border-primary w-25', 'style': 'height: 60px;'}}) }}
+        <button type="submit" class="btn btn-dark border-0 w-25">Send</button>
+    </div>
+    <div style="color: red;">{{ form_errors(f.LibelleCategorie) }}</div>
+    {{ form_end(f) }}
+{% endblock %}

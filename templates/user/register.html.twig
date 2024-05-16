@@ -1,0 +1,168 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+{% form_theme form _self %}
+
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        <div class="alert alert-danger" style="font-size: 0.5em;">
+            {% for error in errors %}
+                <div style="color: red;">{{ error.message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block body %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modernize Free</title>
+    <link rel="shortcut icon" type="image/png" href="../assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="../assets/css/styles.min.css" />
+</head>
+
+<style>
+    .card {
+        position: absolute;
+        left: 100px; /* Adjust the left position as needed */
+        top: 10px; /* Adjust the top position as needed */
+        width: 460px;
+        transition: transform 0.3s ease;
+        margin-top: -50px; /* Déplacement de la carte vers le haut de 150 pixels */
+    }
+    .big-image {
+        max-width: 100%;
+        height: auto;
+        width: 1000px; /* Adjust the width as needed */
+        max-height: 2000px; /* Adjust the maximum height as needed */
+        margin-top: -200px; /* Déplacement de la carte vers le haut de 150 pixels */
+        right: 200px; /* Adjust the left position as needed */
+    }
+    .card:hover {
+        transform: translateX(-10px); /* Translation de 10 pixels vers la gauche */
+    }
+</style>
+
+<body>
+    <script>
+        document.getElementById('signup-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Empêcher la soumission par défaut du formulaire
+            
+            var formData = new FormData(this);
+            fetch(this.action, {
+                method: this.method,
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.error) {
+                    alert(data.error);
+                } else {
+                    // Rediriger ou effectuer d'autres actions si l'inscription est réussie
+                    window.location.href = "{{ path('app_login') }}";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Afficher une alerte en cas d'erreur de traitement
+                alert('An error occurred while processing your request. Please try again later.');
+            });
+        });
+    </script>
+    <!--  Body Wrapper -->
+      <div class="page-wrapper shadow" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="fixed" data-header-position="fixed" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    <div class="position-relative overflow-hidden radial-gradient min-vh-100 d-flex align-items-center justify-content-center">
+        <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="row justify-content-center w-100">
+                <div class="col-md-8 col-lg-6 col-xxl-3">
+                    <div class="card mb-0">
+                        <div class="card-body">
+                                <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
+                                    <img src="../assets/images/logos/dark-logo.svg" width="180" alt="">
+                                </a>
+                                <div class="text-center mb-11">
+                                    <h1 class="text-dark fw-bolder mb-3">Sign Up</h1>
+                                </div>
+                                <div style="display: flex; justify-content: center; align-items: center;">
+                                    <img src="{{ asset('img/logo_pi.jpg') }}" class="me-2"
+                                        style="width: 100px; height: 100px; margin-right: 10px;margin-top: 10px;">
+                                </div>
+                                <form id="signup-form" class="form w-100" novalidate="novalidate"
+                                    action="{{ path('user_register') }}" method="post">
+                                    <div class="row g-3 mb-9">
+                                        <div class="col-md-4">
+                                            {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Name'}}) }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form_row(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form_row(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-md-4">
+                                            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form_row(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Password'}}) }}
+                                        </div>
+                                    <div class="col-md-4">
+    {{ form_row(form.telephone, {'attr': {'class': 'form-control', 'placeholder': 'Tel'}}) }}
+</div>
+</div> <!-- Close the previous row -->
+<div class="row g-3 mb-4">
+    <label for="{{ form.roles.vars.id }}" class="col-md-4 col-form-label">Role</label> <!-- Add label here -->
+    <div class="col-md-8">
+        <select class="form-control" id="{{ form.roles.vars.id }}" name="{{ form.roles.vars.full_name }}" style="color: red;">
+            <option value="" disabled selected>Select a role</option>
+            {% for role in form.roles.vars.choices %}
+                <option value="{{ role.value }}">{{ role.label }}</option>
+            {% endfor %}
+        </select>
+    </div>
+</div>
+
+
+
+                                   
+                                    {{ form_widget(form._token) }}
+                                    <button class="btn btn-primary w-100" type="submit">Sign Up</button>
+                                    <div class="text-center text-gray-500 fw-semibold fs-6 mt-3">
+                                        Already have an Account?
+                                        <a href="{{ path('app_login') }}" class="btn btn-primary w30">Sign in</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex flex-column flex-lg-row-fluid">
+                            <!--begin::Content-->
+                            <div class="d-flex flex-column flex-center pb-0 pb-lg-10 p-10 w-100">
+                                <!--begin::Image-->
+                                <img class="big-image" src="{{ asset('assets/images/alert/sign-up-8044864-6430773.png')}}" alt="" />
+                            </div>
+                            <!--end::Content-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="../assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+{% endblock %}

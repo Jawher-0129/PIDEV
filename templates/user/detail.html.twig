@@ -1,0 +1,48 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}User Details!{% endblock %}
+
+{% block body %}
+    <style>
+        /* Define CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .user-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .user-details p {
+            margin-bottom: 10px;
+        }
+        .user-details strong {
+            font-weight: bold;
+        }
+    </style>
+
+
+        <p><strong>Nom:</strong> {{ user.nom }}</p>
+        <p><strong>Prenom:</strong> {{ user.prenom }}</p>
+        <p><strong>Adresse:</strong> {{ user.adresse }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Roles:</strong>
+            {% for role in user.roles %}
+{% if role == 'ROLE_DONATEUR' or role == 'ROLE_DIRECTEUR' %}
+                    {{ role }}
+                {% endif %}
+            {% endfor %}
+        </p>
+        <div class="back-button">
+            <a href="{{ path('list_user') }}">Back to List</a>
+        </div>
+{% endblock %}

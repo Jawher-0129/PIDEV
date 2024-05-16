@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evenement{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-5 mb-4">Evenement</h1>
+
+        <table class="table table-bordered">
+            <tbody>
+
+                <tr>
+                    <th scope="row" class="w-25">Titre</th>
+                    <td>{{ evenement.Titre }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Date</th>
+                    <td>{{ evenement.Date|date('Y-m-d') }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Duree</th>
+                    <td>{{ evenement.Duree }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Lieu</th>
+                    <td>{{ evenement.Lieu }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Objectif</th>
+                    <td>{{ evenement.Objectif }}</td>
+                </tr>
+                <tr>
+                    <th scope="row" class="w-25">Image</th>
+                    <td>{{ evenement.image }}</td>
+                </tr>
+                {# Include additional fields as needed #}
+            </tbody>
+        </table>
+
+        <a href="{{ path('all_evenements') }}" class="btn btn-secondary">Back to list</a>
+        
+    </div>
+{% endblock %}

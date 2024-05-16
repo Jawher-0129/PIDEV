@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Don{% endblock %}
+
+{% block body %}
+<style>
+    .light-background {
+        background-color: #e3f2fd; /* Very light blue */
+        color: #212529; /* Dark grey for text to ensure readability */
+    }
+    .light-background a.btn-secondary, .light-background a.btn-primary {
+        color: #212529; /* Dark grey text for buttons for contrast */
+        border-color: #adb5bd; /* Light grey border for buttons */
+    }
+    .card {
+        background-color: #ffffff; /* Pure white for card background */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    }
+    .table th, .table td {
+        border-top: 1px solid #dee2e6; /* Keeping the table borders light and subtle */
+    }
+    .table thead th {
+        color: #495057; /* Slightly darker grey for table headers for emphasis */
+    }
+</style>
+
+
+
+<div class="container py-5 light-background">
+    <div class="row g-5">
+        <!-- QR Code Column -->
+        <div class="col-lg-4 order-lg-2">
+            <img src="{{ path('generate_qr_code', {
+                'Date_remise': don.dateRemise|date('Y-m-d'),
+                'Type': don.type,
+                'Montant': don.montant,
+            }) }}" alt="QR Code" class="img-fluid">
+        </div>
+
+        <!-- Details Column -->
+        <div class="col-lg-8 order-lg-1">
+            <div class="mb-5">
+                <h1 class="mb-4">Don Information</h1>
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Id</th>
+                                    <td>{{ don.id }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Type</th>
+                                    <td>{{ don.type }}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Date Remise</th>
+                                    <td>{{ don.dateRemise ? don.dateRemise|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                {% if don.montant %}
+                                <tr>
+                                    <th scope="row">Montant</th>
+                                    <td>{{ don.montant }}</td>
+                                </tr>
+                                {% endif %}
+                               {% if don.campagne %}
+                                        <tr>
+                                            <th scope="row">Campagne</th>
+                                            <td>{{ don.campagne.Titre }}</td>
+                                        </tr>
+                                    {% else %}
+                                        <!-- Affiche le bouton de demande de don seulement si aucune campagne n'est associée -->
+                                        {% if is_granted('ROLE_DIRECTEUR') %}
+                                        <tr>
+                                            <td colspan="2" class="text-center">
+                                                <a href="{{ path('app_demande_new', {'id': don.id}) }}" class="btn btn-warning">Demander un Don</a>
+                                            </td>
+                                        </tr>
+                                    {% endif %}
+                                    {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <a href="{{ path('app_don_index') }}" class="btn btn-secondary">Retour</a>
+                    {% if is_granted('ROLE_DONATEUR') and don.donateur == app.user %}
+                    <a href="{{ path('app_don_edit', {'id': don.id}) }}" class="btn btn-primary">Modifier</a>
+                    {{ include('don/front_office/_delete_form.html.twig') }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

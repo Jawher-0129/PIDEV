@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <!-- Your existing front-end code here -->
+
+    {% if personnels is defined %}
+        <div>
+            <h2>Search Results</h2>
+            <ul>
+                {% for personnel in personnels %}
+                    <li>{{ personnel.getNom() }} - {{ personnel.getRole() }}</li>
+
+                    <div class="col-12 col-sm-5 h-100">
+                                    {% if personnel.Image %}
+                                        <img class="img-fluid h-100" src="{{ asset('uploads/Images/' ~ personnel.Image) }}" style="object-fit: cover;">
+                                    {% endif %}
+                                </div>
+            
+                    {# Add more fields you want to display here #}
+                {% else %}
+                    <li>No results found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+{% endblock %}

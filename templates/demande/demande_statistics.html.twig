@@ -1,0 +1,342 @@
+{% extends 'back.html.twig' %}
+
+{% block title %}Hello BackController!{% endblock %}
+{% block search %}
+                        <li class="nav-item d-none d-md-block">
+                            <a class="nav-link" href="javascript:void(0)">
+                               <form action="{{ path('app_demande_indexback') }}" method="get">
+                                    <div class="customize-input">
+
+                                        <input class="form-control custom-shadow custom-radius border-0 bg-white"
+                                            type="search" placeholder="Search" aria-label="Search" id="searchTerm"  name="searchTerm" value="{{ searchTerm }}">
+                                           
+                                        <i class="form-control-icon" data-feather="search"></i>
+                                    </div>
+                                </form>
+                            </a>
+                        </li>
+                        {% endblock search %}
+{% block body %}
+<a href="{{ path('excel_demande') }}" class="btn btn-success btn-sm">
+             EXcEL
+            </a>
+         {#  <form action="{{ path('app_demande_indexback') }}" method="get">
+    <label for="searchTerm">Search Term:</label>
+    <input type="text" id="searchTerm" name="searchTerm" value="{{ searchTerm }}" />
+    <button type="submit">Search</button>
+</form> #}
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id_demande</th>
+                <th>Date</th>
+                <th>titre</th>
+                <th>Description</th>
+                <th>Statut</th>
+                <th>Don</th>
+                <th>Directeur de campagne</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demande in demandes %}
+            <tr>
+                <td>{{ demande.id_demande }}</td>
+                <td>{{ demande.Date ? demande.Date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ demande.titre }}</td>
+                <td>{{ demande.Description }}</td>
+                <td class="{% if demande.Statut == 'demande refuse' %}text-danger{% elseif demande.Statut == 'DEMENDE TRAITEE' %}text-cyan{% endif %}">
+                    {{ demande.Statut }}
+                </td>
+                <td>{{ demande.don.type }}</td>
+                <td>{{ demande.directeurCampagne.Prenom }} {{ demande.directeurCampagne.Nom }}</td>
+                <td>
+                    <a href="{{ path('app_rendez_vous_new', {'demande': demande.id_demande}) }}" class="btn btn-cyan btn-sm ">
+                        <i class="fas fa-check "></i> Accepter
+                    </a>
+                    <a href="{{ path('refuseDemende', {'id_demande': demande.id_demande}) }}" class="btn btn-danger btn-sm">
+                        <i class="fas fa-times"></i> Refuser
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+<center>
+<div class="container">
+    <h1>Statistiques des demandes</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Total Sales</h4>
+                    <canvas id="myChart" style="height: 283px; width: 100%;"></canvas>
+                    <ul class="list-style-none mb-0">
+                        {% for statut, count in statistics %}
+                            <li>
+                                <i class="fas fa-circle {% if statut == 'DEMENDE TRAITEE' %}text-cyan{% elseif statut == 'demande refuse' %}text-danger{% else %}text-primary{% endif %} font-10 mr-2"></i>
+                                <span class="text-muted">{{ statut }}</span>
+                                <span class="text-dark float-right font-weight-medium">{{ count }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</center>
+
+<!-- *************************************************************** -->
+                <!-- End Location and Earnings Charts Section -->
+                <!-- *************************************************************** -->
+                <!-- *************************************************************** -->
+                <!-- Start Top Leader Table -->
+                <!-- *************************************************************** -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-4">
+                                    <h4 class="card-title">Top Leaders</h4>
+                                    <div class="ml-auto">
+                                        <div class="dropdown sub-dropdown">
+                                            <button class="btn btn-link text-muted dropdown-toggle" type="button"
+                                                id="dd1" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <i data-feather="more-vertical"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dd1">
+                                                <a class="dropdown-item" href="#">Insert</a>
+                                                <a class="dropdown-item" href="#">Update</a>
+                                                <a class="dropdown-item" href="#">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table no-wrap v-middle mb-0">
+                                        <thead>
+                                            <tr class="border-0">
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Team Lead
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted px-2">Project
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Team</th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted text-center">
+                                                    Status
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted text-center">
+                                                    Weeks
+                                                </th>
+                                                <th class="border-0 font-14 font-weight-medium text-muted">Budget</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border-top-0 px-2 py-4">
+                                                    <div class="d-flex no-block align-items-center">
+                                                        <div class="mr-3"><img
+                                                                src="assets/images/users/widget-table-pic1.jpg"
+                                                                alt="user" class="rounded-circle" width="45"
+                                                                height="45" /></div>
+                                                        <div class="">
+                                                            <h5 class="text-dark mb-0 font-16 font-weight-medium">Hanna
+                                                                Gover</h5>
+                                                            <span class="text-muted font-14">hgover@gmail.com</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="border-top-0 text-muted px-2 py-4 font-14">Elite Admin</td>
+                                                <td class="border-top-0 px-2 py-4">
+                                                    <div class="popover-icon">
+                                                        <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                            href="javascript:void(0)">DS</a>
+                                                        <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
+                                                            href="javascript:void(0)">SS</a>
+                                                        <a class="btn btn-cyan rounded-circle btn-circle font-12 popover-item"
+                                                            href="javascript:void(0)">RP</a>
+                                                        <a class="btn btn-success text-white rounded-circle btn-circle font-20"
+                                                            href="javascript:void(0)">+</a>
+                                                    </div>
+                                                </td>
+                                                <td class="border-top-0 text-center px-2 py-4"><i
+                                                        class="fa fa-circle text-primary font-12" data-toggle="tooltip"
+                                                        data-placement="top" title="In Testing"></i></td>
+                                                <td
+                                                    class="border-top-0 text-center font-weight-medium text-muted px-2 py-4">
+                                                    35
+                                                </td>
+                                                <td class="font-weight-medium text-dark border-top-0 px-2 py-4">$96K
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-2 py-4">
+                                                    <div class="d-flex no-block align-items-center">
+                                                        <div class="mr-3"><img
+                                                                src="assets/images/users/widget-table-pic2.jpg"
+                                                                alt="user" class="rounded-circle" width="45"
+                                                                height="45" /></div>
+                                                        <div class="">
+                                                            <h5 class="text-dark mb-0 font-16 font-weight-medium">Daniel
+                                                                Kristeen
+                                                            </h5>
+                                                            <span class="text-muted font-14">Kristeen@gmail.com</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-muted px-2 py-4 font-14">Real Homes WP Theme</td>
+                                                <td class="px-2 py-4">
+                                                    <div class="popover-icon">
+                                                        <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                            href="javascript:void(0)">DS</a>
+                                                        <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
+                                                            href="javascript:void(0)">SS</a>
+                                                        <a class="btn btn-success text-white rounded-circle btn-circle font-20"
+                                                            href="javascript:void(0)">+</a>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center px-2 py-4"><i
+                                                        class="fa fa-circle text-success font-12" data-toggle="tooltip"
+                                                        data-placement="top" title="Done"></i>
+                                                </td>
+                                                <td class="text-center text-muted font-weight-medium px-2 py-4">32</td>
+                                                <td class="font-weight-medium text-dark px-2 py-4">$85K</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-2 py-4">
+                                                    <div class="d-flex no-block align-items-center">
+                                                        <div class="mr-3"><img
+                                                                src="assets/images/users/widget-table-pic3.jpg"
+                                                                alt="user" class="rounded-circle" width="45"
+                                                                height="45" /></div>
+                                                        <div class="">
+                                                            <h5 class="text-dark mb-0 font-16 font-weight-medium">Julian
+                                                                Josephs
+                                                            </h5>
+                                                            <span class="text-muted font-14">Josephs@gmail.com</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-muted px-2 py-4 font-14">MedicalPro WP Theme</td>
+                                                <td class="px-2 py-4">
+                                                    <div class="popover-icon">
+                                                        <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                            href="javascript:void(0)">DS</a>
+                                                        <a class="btn btn-danger rounded-circle btn-circle font-12 popover-item"
+                                                            href="javascript:void(0)">SS</a>
+                                                        <a class="btn btn-cyan rounded-circle btn-circle font-12 popover-item"
+                                                            href="javascript:void(0)">RP</a>
+                                                        <a class="btn btn-success text-white rounded-circle btn-circle font-20"
+                                                            href="javascript:void(0)">+</a>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center px-2 py-4"><i
+                                                        class="fa fa-circle text-primary font-12" data-toggle="tooltip"
+                                                        data-placement="top" title="Done"></i>
+                                                </td>
+                                                <td class="text-center text-muted font-weight-medium px-2 py-4">29</td>
+                                                <td class="font-weight-medium text-dark px-2 py-4">$81K</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-2 py-4">
+                                                    <div class="d-flex no-block align-items-center">
+                                                        <div class="mr-3"><img
+                                                                src="assets/images/users/widget-table-pic4.jpg"
+                                                                alt="user" class="rounded-circle" width="45"
+                                                                height="45" /></div>
+                                                        <div class="">
+                                                            <h5 class="text-dark mb-0 font-16 font-weight-medium">Jan
+                                                                Petrovic
+                                                            </h5>
+                                                            <span class="text-muted font-14">hgover@gmail.com</span>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-muted px-2 py-4 font-14">Hosting Press HTML</td>
+                                                <td class="px-2 py-4">
+                                                    <div class="popover-icon">
+                                                        <a class="btn btn-primary rounded-circle btn-circle font-12"
+                                                            href="javascript:void(0)">DS</a>
+                                                        <a class="btn btn-success text-white font-20 rounded-circle btn-circle"
+                                                            href="javascript:void(0)">+</a>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center px-2 py-4"><i
+                                                        class="fa fa-circle text-danger font-12" data-toggle="tooltip"
+                                                        data-placement="top" title="In Progress"></i></td>
+                                                <td class="text-center text-muted font-weight-medium px-2 py-4">23</td>
+                                                <td class="font-weight-medium text-dark px-2 py-4">$80K</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- *************************************************************** -->
+                <!-- End Top Leader Table -->
+                <!-- *************************************************************** -->
+
+
+{% endblock %}
+
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% endblock %}
+
+{% block js %}
+{{ parent() }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [{% for statut, count in statistics %}'{{ statut }}',{% endfor %}],
+            datasets: [{
+                label: 'Nombre de demandes',
+                data: [{% for statut, count in statistics %}{{ count }},{% endfor %}],
+                backgroundColor: [
+                    {% for statut, count in statistics %}
+                        {% if statut == 'DEMENDE TRAITEE' %}
+                            'rgb(1, 202, 241)', // Bleu pour DEMANDE TRAITEE
+                        {% elseif statut == 'demande refuse' %}
+                            'rgb(255, 79, 112)', // Rouge pour DEMANDE REFUSEE
+                        {% else %}
+                            'rgb(237, 242, 246)', // Autre couleur par défaut
+                        {% endif %}
+                    {% endfor %}
+                ],
+                borderColor: [
+                    {% for statut, count in statistics %}
+                        {% if statut == 'DEMANDE TRAITEE' %}
+                            'rgb(1, 202, 241)', // Bleu pour DEMANDE TRAITEE
+                        {% elseif statut == 'DEMANDE REFUSEE' %}
+                            'rgb(255, 79, 112)', // Rouge pour DEMANDE REFUSEE
+                        {% else %}
+                            'rgb(237, 242, 246)', // Autre couleur par défaut
+                        {% endif %}
+                    {% endfor %}
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: false, // Disable responsiveness
+            maintainAspectRatio: false, // Disable aspect ratio
+            // Laissez le reste des options tel quel
+        }
+    });
+</script>
+{% endblock %}

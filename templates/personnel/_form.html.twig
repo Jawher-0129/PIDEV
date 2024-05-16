@@ -1,0 +1,81 @@
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': 'novalidate'}}) }}
+
+                        <div class="mb-3">
+                            {{ form_row(form.Nom, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Nom) %}
+                                <div class="invalid-feedback">
+                                    {{ form_errors(form.Nom) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Prenom_personnel, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Prenom_personnel) %}
+                                <div class="invalid-feedback">
+                                    {{ form_errors(form.Prenom_personnel) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_label(form.Disponibilite) }}
+                            {{ form_errors(form.Disponibilite) }}
+                            <div class="form-check">
+                                {{ form_widget(form.Disponibilite) }}
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Role, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Role) %}
+                                <div class="invalid-feedback">
+                                    {{ form_errors(form.Role) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Experience, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Experience) %}
+                                <div class="invalid-feedback">
+                                    {{ form_errors(form.Experience) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.Image, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.Image) %}
+                                <div class="invalid-feedback">
+                                    {{ form_errors(form.Image) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.rating, {'attr': {'class': 'form-control'}}) }}
+                            {% if form_errors(form.rating) %}
+                                <div class="invalid-feedback">
+                                    {{ form_errors(form.rating) }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="text-center">
+                            <a href="{{ path('app_personnel_index') }}" class="btn btn-secondary btn-sm">Retourner à la Liste</a>
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'back.html.twig' %}
+
+{% block title %} Liste des Actualites {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {# Include Bootstrap CSS #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center mt-4">Liste des Actualites</h1>
+        <div class="row justify-content-end mb-3">
+            <div class="col-auto">
+                <a href="{{ path('export_actualites') }}" class="btn btn-success">Export to Excel</a>
+            </div>
+        </div>
+        <div class="table-responsive mt-4">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID Actualite</th>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Type Pub Cible</th>
+                        <th>Theme</th>
+                        <th colspan="2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for actualite in pagination %}
+                        <tr>
+                            <td>{{ actualite.id }}</td>
+                            <td>{{ actualite.Titre }}</td>
+                            <td>{{ actualite.Description }}</td>
+                            <td>{{ actualite.TypePubCible }}</td>
+                            <td>{{ actualite.Theme }}</td> 
+                            <td><a href="{{ path('delete_actualiteba', {'id': actualite.id}) }}" class="btn btn-danger">Delete</a></td>
+                            <td><a href="{{ path('edit_actualiteba', {'id': actualite.id}) }}" class="btn btn-primary">Edit</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {# Pagination Links #}
+        <div class="text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+        <a href="{{ path('add_actualiteba') }}" class="btn btn-secondary">Ajout</a>
+        <form action="{{ path('xlsx') }}" method="post" enctype="multipart/form-data" style="display: inline;">
+            <input type="file" name="file" id="file" style="display: none;" onchange="this.form.submit()">
+            <label for="file" class="btn btn-info">Import Excel</label>
+        </form>
+    </div>
+{% endblock %}

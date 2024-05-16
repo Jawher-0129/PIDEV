@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendez-Vous{% endblock %}
+
+{% block body %}
+   <div class="container-fluid py-5">
+        <div class="container">
+            <div class="text-center mx-auto mb-5" style="max-width: 800px;">
+                <h5 class="d-inline-block text-primary text-uppercase border-bottom border-5">Rendez-Vous</h5>
+            </div>
+            
+            <div class="d-flex flex-wrap justify-content-around"> 
+                {% for rendez_vou in rendez_vouses %}
+                    <div class="card mb-4" style="max-width: 18rem; height: 300px; position: relative; flex: 0 0 auto;">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Lieu: {{ rendez_vou.Lieu }}</h5>
+                            <p class="card-text">Objectif: {{ rendez_vou.Objective }}</p>
+                            <p class="card-text small">Date du rendez-vous: {{ rendez_vou.Date ? rendez_vou.Date|date('Y-m-d H:i') : '' }}</p>
+                        </div>
+                        <div style="position: absolute; bottom: 0; left: 0; right: 0;" class="card-body text-center">
+                            <a class="btn btn-primary rounded-pill" href="{{ path('app_rendez_vous_show', {'id_rendezvous': rendez_vou.id_rendezvous}) }}">
+                                Voir les détails <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-12">
+                        <p class="text-center">Aucun rendez-vous trouvé.</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

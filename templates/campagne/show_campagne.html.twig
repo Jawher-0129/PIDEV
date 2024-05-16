@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ campagne.Titre }} Details - My Campaigns
+{% endblock %}
+
+{% block body %}
+    <div class="container py-5 d-flex justify-content-center align-items-center ">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <!-- Blog Detail Start -->
+                <div class="mb-5">
+                    {% if campagne.Image starts with 'C' %}
+                    {% set fileName = campagne.Image|split('\\')|last %}
+                        <img class="img-fluid w-100 rounded mb-5" src="{{ asset('uploads/' ~ fileName) }}" alt="{{ campagne.Titre }} Image">
+                    {% else %}
+                    <img class="img-fluid w-100 rounded mb-5" src="{{ asset('uploads/Images/' ~ campagne.Image) }}" alt="{{ campagne.Titre }} Image">
+                    {% endif %}
+                    <h1 class="mb-4">{{ campagne.Titre }} Details</h1>
+                    <dl>
+                        <dt>ID:</dt>
+                        <dd>{{ campagne.id }}</dd>
+
+                        <dt>Titre:</dt>
+                        <dd>{{ campagne.Titre }}</dd>
+
+                        <dt>Description:</dt>
+                        <dd>{{ campagne.Description }}</dd>
+
+                        <dt>Date:</dt>
+                        <dd>{{ campagne.DateDebut|date('Y-m-d') }} to {{ campagne.DateFin|date('Y-m-d') }}</dd>
+                    </dl>
+
+                    <div class="d-flex justify-content-between bg-light rounded p-4 mt-4 mb-4">
+                        <div class="d-flex align-items-center">
+                            <!-- Use default image if no user image is provided -->
+                            <img class="rounded-circle me-2" src="{{asset('img/logo_pi.jpg')}}" width="40" height="40" alt="">
+                          {% if campagne.Directeur %}  <span>  {{ campagne.Directeur.Nom}} </span>{% endif %}
+                        </div> 
+                        <div class="d-flex align-items-center">
+                            <!-- You may replace these static values with actual data -->
+                            <span class="ms-3"><i class="far fa-eye text-primary me-1"></i>12345</span>
+                            <span class="ms-3"><i class="far fa-comment text-primary me-1"></i>123</span>
+                        </div>
+                    </div>
+
+<img src="{{ path('generate_qr_code_Campaign', {
+               'Image': campagne.Image,
+               'Titre': campagne.Titre ,
+            'Description': campagne.Description,
+               'Date_debut': campagne.DateDebut|date('Y-m-d'),
+                'Date_fin': campagne.DateFin|date('Y-m-d')
+        })}}" alt="QR Code">
+
+                    <div class="text-center">
+                        <a href="{{ path('all_campagnes') }}" class="btn btn-secondary">Retour </a>
+                        {% if is_granted('ROLE_DIRECTEUR') and campagne.directeur == app.user %}
+                        <a href="{{ path('update_campagne', {'id': campagne.id}) }}" class="btn btn-light btn-sm">Modifier</a>
+                        <a href="{{ path('delete_campagne', {'id': campagne.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this campagne?')">Supprimer</a>
+                    {% endif %}
+                    </div>
+                    <div>
+                        {% if is_granted('ROLE_DONATEUR') %}
+                     <a href="{{ path('app_don_new') }}" class="btn btn-secondary">Faites un Don!</a>
+                     {% endif %}
+                     </div>
+
+                </div>
+                <!-- Blog Detail End -->
+            </div>
+        </div>
+    </div>
+{% endblock %}

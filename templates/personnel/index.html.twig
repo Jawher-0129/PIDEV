@@ -1,0 +1,76 @@
+{% extends 'back.html.twig' %}
+{% block body %}
+    <h1>Personnel index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id_personnel</th>
+                <th>Nom</th>
+                <th>Prenom_personnel</th>
+                <th>Disponibilite</th>
+                <th>Role</th>
+                <th>Experience</th>
+                <th>Rating</th> {# Add this line for the rating field #}
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for personnel in personnels %}
+            <tr>
+                <td>{{ personnel.idPersonnel }}</td>
+                <td>{{ personnel.Nom }}</td>
+                <td>{{ personnel.PrenomPersonnel }}</td>
+                <td>{{ personnel.Disponibilite ? 'OUI' : 'NON' }}</td>
+                <td>{{ personnel.Role }}</td>
+                <td>{{ personnel.Experience }}</td>
+                <td>{{ personnel.rating }}</td> {# Add this line for the rating field #}
+
+                <td>
+                     <a href="{{ path('app_personnel_show', {'id_personnel': personnel.getIdPersonnel}) }}">Voir</a>
+                     <a href="{{ path('app_personnel_edit', {'id_personnel': personnel.getIdPersonnel}) }}">Modifier</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# Pagination #}
+    <div class="pagination">
+        {% for i in 1..totalPages %}
+            {% if i == currentPage %}
+                <span>{{ i }}</span>
+            {% else %}
+                <a href="{{ path('app_personnel_index', {'page': i}) }}">{{ i }}</a>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('app_personnel_new') }}">Ajouter</a>
+
+    {# Ajoutez ceci dans votre fichier CSS pour styliser la pagination #}
+    <style>
+    .pagination span, .pagination a {
+        padding: 8px 16px;
+        margin: 0 4px;
+        border: 1px solid #ddd;
+        text-decoration: none;
+        color: black;
+    }
+
+    .pagination span {
+        background-color: #007bff;
+        color: white;
+        border: 1px solid #007bff;
+    }
+
+    .pagination a:hover {
+        background-color: #ddd;
+    }
+    </style>
+{% endblock %}

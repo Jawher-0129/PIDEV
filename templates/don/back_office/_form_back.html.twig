@@ -1,0 +1,82 @@
+<div class="card mx-auto" style="max-width: 550px;">
+    <div class="card-body">
+        {{ form_start(form, {'attr': {'class': 'form-horizontal needs-validation', 'novalidate': 'novalidate'}}) }}
+
+        <div class="form-group">
+            <div class="col-sm-10 mx-auto">
+                {{ form_row(form.Type, {'attr': {'class': 'form-control', 'aria-describedby': 'typeError'}}) }}
+                {% if form_errors(form.Type) %}
+                    <div id="typeError" class="invalid-feedback">
+                        {{ form_errors(form.Type) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+      <div class="form-group">
+    <div class="col-sm-10 mx-auto">
+        {{ form_row(form.Date_remise, {'attr': {'class': 'form-control', 'aria-describedby': 'dateError', 'required': 'required'}}) }}
+        {% if form_errors(form.Date_remise) %}
+            <div id="dateError" class="invalid-feedback">
+                {{ form_errors(form.Date_remise) }}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+
+        <div class="form-group ">
+            <div class="col-sm-10 mx-auto">
+                {{ form_row(form.Montant, {'attr': {'class': 'form-control', 'aria-describedby': 'montantError'}}) }}
+                {% if form_errors(form.Montant) %}
+                    <div id="montantError" class="invalid-feedback">
+                        {{ form_errors(form.Montant) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group choose-campaign-field">
+            {{ form_label(form.chooseCampaign, 'Choose Campaign', {'label_attr': {'class': 'control-label col-sm-2'}}) }}
+            <div class="col-sm-10 mx-auto">
+                {{ form_widget(form.chooseCampaign, {
+                    'choices': {
+                        'Oui': 1,
+                        'Non': 0,
+                    },
+                    'expanded': true,
+                }, {'attr': {'class': 'form-control', 'aria-describedby': 'campaignError'}}) }}
+                {% if form_errors(form.chooseCampaign) %}
+                    <div id="campaignError" class="invalid-feedback">
+                        {{ form_errors(form.chooseCampaign) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group campagne-field" style="display: none;">
+            <div class="col-sm-10 mx-auto">
+                {{ form_row(form.campagne, {'attr': {'class': 'form-control', 'aria-describedby': 'campagneError'}}) }}
+                {% if form_errors(form.campagne) %}
+                    <div id="campagneError" class="invalid-feedback">
+                        {{ form_errors(form.campagne) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var chooseCampaignField = document.querySelector('.choose-campaign-field');
+        var campagneField = document.querySelector('.campagne-field');
+
+        chooseCampaignField.addEventListener('change', function() {
+            var selectedValue = document.querySelector('input[name="{{ form.chooseCampaign.vars.full_name }}"]:checked').value;
+            campagneField.style.display = (selectedValue === '1') ? 'block' : 'none';
+        });
+    });
+</script>

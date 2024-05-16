@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Demande{% endblock %}
+
+{% block body %}
+   <div class="container-fluid bg-primary my-5 py-5">
+        <div class="container py-5">
+        <h1>Passer votre Demande</h1>
+        </div>
+                </div>
+
+    {{ include('demande/_form.html.twig') }}
+
+    <a href="{{ path('app_demande_index') }}">back to list</a>
+{% endblock %}

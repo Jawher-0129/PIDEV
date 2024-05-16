@@ -1,0 +1,35 @@
+{# <form method="post" action="{{path('searchid')}}">
+{{ form_start(form)}}
+{{ form_row(form.cr) }}
+<button type="submit">search</button>
+{{ form_end(form) }}
+</form> #}
+ <h1>Recherche</h1>
+<form method="post" action="{{path('searchid')}}">
+    {{ form_start(form) }}
+    {{ form_row(form.critere) }}
+    <button type="submit">Rechercher</button>
+    {{ form_end(form) }}
+    </form>
+<table border="1">
+<tr>
+<td> id_demande</td>
+<td> titre </td>
+<td> Description </td>
+<td> Date </td>
+
+</tr>
+{% for demande in demandes %}
+<tr>
+<td>{{demande.id_demande}}</td>
+<td>{{demande.titre}}</td>
+<td>{{demande.Description}}</td>
+<td>{{demande.Date|date("F j, Y H:i")}}</td>
+
+ 
+
+</tr>
+{% endfor %}
+</table>
+ 
+ {# sdgsrg #}

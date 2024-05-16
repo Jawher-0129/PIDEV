@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+ {% if app.user %}
+        <form action="{{ path('app_logout') }}" method="post">
+            <button type="submit">Logout</button>
+{% endblock %}
+

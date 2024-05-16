@@ -1,0 +1,257 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <!-- begin::details View -->
+    <div class="card mb-5 mb-xl-10" id="kt_profile_details_view" style="margin-top: 120px; margin-left: 50px; margin-right: 50px">
+        <!-- begin::Card header -->
+        <div class="card-header cursor-pointer">
+            <!-- begin::Card title -->
+            <div class="card-title m-0">
+                <h3 class="fw-bold m-0">Profile Details</h3>
+            </div>
+            <!-- end::Card title -->
+            <!-- begin::Action -->
+            <a href="#" class="btn btn-sm btn-primary align-self-center" data-bs-toggle="modal" data-bs-target="#editProfileModal">Edit Profile</a>
+            <!-- end::Action -->
+        </div>
+        <!-- begin::Card header -->
+        <!-- begin::Card body -->
+        <div class="card-body p-9">
+            <!-- begin::Row -->
+            <div class="row mb-7">
+                <!-- begin::Label -->
+                <label class="col-lg-4 fw-semibold text-muted">Full Name</label>
+                <!-- end::Label -->
+                <!-- begin::Col -->
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">{{ user.Nom ~ ' ' ~ user.Prenom }}</span>
+                </div>
+                <!-- end::Col -->
+            </div>
+            <!-- end::Row -->
+            <!-- begin::Input group -->
+            <div class="row mb-7">
+                <!-- begin::Label -->
+                <label class="col-lg-4 fw-semibold text-muted">Adresse</label>
+                <!-- end::Label -->
+                <!-- begin::Col -->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-semibold text-gray-800 fs-6">{{ user.Adresse }}</span>
+                </div>
+                <!-- end::Col -->
+            </div>
+            <!-- end::Input group -->
+
+            <!-- end::Input group -->
+            <!-- begin::Input group -->
+            <div class="row mb-7">
+                <!-- begin::Label -->
+                <label class="col-lg-4 fw-semibold text-muted">Email</label>
+                <!-- end::Label -->
+                <!-- begin::Col -->
+                <div class="col-lg-8">
+                    <span class="fw-bold fs-6 text-gray-800">{{ user.Email }}</span>
+                </div>
+                <!-- end::Col -->
+            </div>
+            <!-- end::Input group -->
+        </div>
+        <!-- end::Card body -->
+    </div>
+    <!-- end::details View -->
+
+   {% block edit %}
+        <!-- Edit Profile Modal -->
+        <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        {{ form_start(form, {'attr': {'method': 'post', 'action': path('updateuser'), 'novalidate': 'novalidate', 'id': 'yourFormId'}}) }}
+
+                        <div class="mb-3">
+                            {{ form_row(form.nom, {'attr': {'class': 'form-control', 'placeholder': 'Nom'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.prenom, {'attr': {'class': 'form-control', 'placeholder': 'Prénom'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.adresse, {'attr': {'class': 'form-control', 'placeholder': 'Adresse'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.email, {'attr': {'class': 'form-control', 'placeholder': 'Email'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.password, {'attr': {'class': 'form-control', 'placeholder': 'Password'}}) }}
+                            <div class="error-message"></div>
+                        </div>
+
+                        <div class="mb-3">
+                            {{ form_row(form.update, {'attr': {'class': 'btn btn-primary'}}) }}
+                        </div>
+
+                        {{ form_end(form) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+{% block js %}
+    <!--begin::Global Javascript Bundle(mandatory for all pages)-->
+    <script src="{{ asset('/plugins/global/plugins.bundle.js')}}"></script>
+    <script src="{{ asset('/js/scripts.bundle.js')}}"></script>
+    <!--end::Global Javascript Bundle-->
+
+    <!--begin::Custom Javascript(used for this page only)-->
+    <script src="{{ asset('/js/custom/landing.js')}}"></script>
+    <script src="{{ asset('js/custom/pages/pricing/general.js')}}"></script>
+    <!--begin::Vendors Javascript(used for this page only)-->
+    <script src="{{ asset('plugins/custom/datatables/datatables.bundle.js')}}"></script>
+    <!--end::Vendors Javascript-->
+    <!--begin::Custom Javascript(used for this page only)-->
+    <script src="{{ asset('js/custom/pages/user-profile/general.js')}}"></script>
+    <script src="{{ asset('js/widgets.bundle.js')}}"></script>
+    <script src="{{ asset('js/custom/widgets.js')}}"></script>
+    <script src="{{ asset('js/custom/apps/chat/chat.js')}}"></script>
+    <script src="{{ asset('js/custom/utilities/modals/upgrade-plan.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById('yourFormId');
+            const modal = new bootstrap.Modal(document.getElementById('editProfileModal'));
+
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Custom validation function
+                if (!validateForm()) {
+                    return;
+                }
+
+                // Create a FormData object and append the CSRF token
+                const formData = new FormData(form);
+                formData.append('{{ csrf_token('updateuser') }}', '1'); // Replace '1' with your actual CSRF token
+
+                // Submit the form
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => {
+                        if (response.ok) {
+                            console.log('Form submitted successfully!');
+                            modal.hide(); // Optionally, you can perform additional actions after successful form submission
+                            location.reload();
+                        } else {
+                            console.error('Form submission failed.');
+                            // Handle errors and display messages under each field
+                            handleFormErrors(response);
+                        }
+                    })
+                    .catch(error => console.error('Error submitting form:', error));
+            });
+
+            // Custom validation function
+            function validateForm() {
+                let isValid = true;
+
+                // Clear all existing error messages
+                document.querySelectorAll('.error-message').forEach(error => {
+                    error.textContent = '';
+                });
+
+                // Example: Check if the nom field is empty
+                // Example: Check if the nom field is empty
+                const nomInput = document.getElementById('{{ form.nom.vars.id }}');
+                const nomValue = nomInput.value.trim();
+                if (nomValue === '') {
+                    displayErrorMessage(nomInput, 'veulliez saisir votre nom.');
+                    isValid = false;
+                }
+
+                // Check the prenom field
+                const prenomInput = document.getElementById('{{ form.prenom.vars.id }}');
+                const prenomValue = prenomInput.value.trim();
+                if (prenomValue === '') {
+                    displayErrorMessage(prenomInput, 'veulliez saisir votre prenom.');
+                    isValid = false;
+                }
+
+                // Check the adresse field
+                const adresseInput = document.getElementById('{{ form.adresse.vars.id }}');
+                const adresseValue = adresseInput.value.trim();
+                if (adresseValue === '') {
+                    displayErrorMessage(adresseInput, 'veulliez saisir votre adresse.');
+                    isValid = false;
+                }
+
+                // Check the email field
+                const emailInput = document.getElementById('{{ form.email.vars.id }}');
+                const emailValue = emailInput.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(emailValue)) {
+                    displayErrorMessage(emailInput, 'Please enter a valid email address.');
+                    isValid = false;
+                }
+
+                // Check the password field
+                const passwordInput = document.getElementById('{{ form.password.vars.id }}');
+                const passwordValue = passwordInput.value.trim();
+                if (passwordValue === '') {
+                    displayErrorMessage(passwordInput, 'Veulliez saisir votre password.');
+                    isValid = false;
+                }
+
+                // Add more validation checks for other fields as needed
+
+                return isValid;
+            }
+
+            // Function to handle form errors and display messages under each field
+            function handleFormErrors(response) {
+                // Assuming the server returns errors in JSON format
+                response.json().then(errors => {
+                    Object.keys(errors).forEach(fieldName => {
+                        const field = form.querySelector(`[name="${fieldName}"]`);
+                        if (field) {
+                            displayErrorMessage(field, errors[fieldName]);
+                        }
+                    });
+                });
+            }
+
+            // Function to display error messages under the input fields
+            function displayErrorMessage(input, message) {
+                const errorContainer = input.parentElement.querySelector('.error-message');
+                if (errorContainer) {
+                    errorContainer.textContent = message;
+                    errorContainer.style.color = 'red'; // Set the text color to red
+                } else {
+                    // Create error message element if not present
+                    const errorMessage = document.createElement('div');
+                    errorMessage.classList.add('error-message');
+                    errorMessage.textContent = message;
+                    errorMessage.style.color = 'red'; // Set the text color to red
+                    input.parentElement.appendChild(errorMessage);
+                }
+            }
+
+        });
+    </script>
+    <!-- Add other JS scripts as needed -->
+{% endblock %}
+
+{% endblock %}
